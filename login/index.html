@@ -1,15 +1,123 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
 </head>
 
 <body>
-    <h1>Login</h1>
+    <!-- Header -->
+    <div class="header">
+        <div class="header__title">
+            <div class="header__title-logo">
+                <a href="/">
+                    <img src="../Asset/images/logo.png" alt="logo">
+                </a>
+                <span>Đăng nhập</span>
+            </div>
+            <a class="header__title-help">Bạn cần giúp đỡ?</a>
+        </div>
+    </div>
+
+    <!-- content -->
+    <div class="content">
+        <div class="container">
+            <form class="container__formlogin">
+                <div class="container__formlogin-title spaceXY">
+                    <h3>
+                        Đăng nhập
+                    </h3>
+                </div>
+
+
+                <div class="container__formlogin-field spaceX">
+                    <div>
+                        <input type="text" value="0852 097 564" placeholder="Email/Số điện thoại/Tên Đăng nhập">
+                    </div>
+                    <div>
+                        <input type="password" placeholder="Mật khẩu">
+                        <i class="fa-regular fa-eye-slash"></i>
+                    </div>
+
+                    <button>ĐĂNG NHẬP</button>
+
+                </div>
+
+                <div class="container__formlogin-feature">
+                    <a href="#">Quên mật khẩu</a>
+                    <a href="#">Đăng nhập với SMS</a>
+                </div>
+
+                <div class="container__formlogin-line">
+                    <hr>
+                </div>
+
+
+                <div class="container__formlogin-auth spaceXY">
+                    <button>
+                        <i class="fa-brands fa-facebook icon-fb"></i>
+                        <span>Facebook</span>
+                    </button>
+                    <button>
+                        <i class="fa-brands fa-google icon-google"></i>
+                        <span>Google</span>
+                    </button>
+                </div>
+
+                <div class="container__formlogin-register">
+                    <span>Bạn mới biết đến Shopee?</span>
+                    <a href="#">Đăng Ký</a>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+    <!-- footer -->
+    <div class="footer">
+        <div class="footer-border">
+            <div class="footer__license">
+                <div class="license-permission">
+                    <span>© 2024 Shopee. Tất cả các quyền được bảo lưu.</span>
+                </div>
+                <div class="license-country">
+                    <span>Quốc gia & khu vực:</span>
+                    <span>Singaport</span>
+                    <span>Singaport</span>
+                    <span>Singaport</span>
+                    <span>Singaport</span>
+                    <span>Singaport</span>
+                    <span>Singaport</span>
+                </div>
+            </div>
+            <div class="footer__policy">
+                <span>chính sách bảo mật</span>
+                <span>cơ chế hoạt động</span>
+                <span>chính sách vận chuyển</span>
+                <span>chính sách trả hàng và hoàn tiền</span>
+            </div>
+            <div class="footer__image">
+                <img src="../Asset/images/license.png" alt="">
+                <img src="../Asset/images/license.png" alt="">
+                <img src="../Asset/images/license-circle.png" alt="">
+            </div>
+            <div class="footer__company">
+                <span>Công ty TNHH Shopee</span>
+            </div>
+            <div class="footer__location">
+                <span>Địa chỉ: Tầng 4-5-6, Tòa nhà Capital Place, số 29 đường Liễu Giai, Phường Ngọc Khánh, Quận Ba
+                    Đình, Thành phố Hà Nội, Việt Nam. Tổng đài hỗ trợ: 19001221 - Email: cskh@hotro.shopee.vn
+                </span>
+                <span>Chịu Trách Nhiệm Quản Lý Nội Dung: Nguyễn Bùi Anh Tuấn</span>
+                <span>Mã số doanh nghiệp: 0106773786 do Sở Kế hoạch & Đầu tư TP Hà Nội cấp lần đầu ngày
+                    10/02/2015</span>
+                <span>© 2015 - Bản quyền thuộc về Công ty TNHH Shopee</span>
+            </div>
+        </div>
+    </div>
+
     <script type="module" src="./login.js"></script>
 </body>
 
