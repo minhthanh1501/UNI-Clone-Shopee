@@ -5,7 +5,7 @@ import { resolve } from "path";
 export default defineConfig({
   // Cấu hình cho server phát triển
   server: {
-    port: 3000, // Bạn có thể thay đổi port nếu cần
+    port: 3000,
   },
   // Cấu hình cho build
   build: {

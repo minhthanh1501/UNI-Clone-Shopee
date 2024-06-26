@@ -3,13 +3,519 @@
 
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <link rel="icon" type="image/svg+xml" href="/Asset/images/icon.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vite App</title>
+  <title>Trang chủ</title>
 </head>
 
 <body>
-  <div id="app"></div>
+  <!-- header -->
+  <div class="bg-gradient-to-b from-[#f53d2d] to-[#f63] h-[120px] flex flex-col items-center justify-center gap-5">
+    <div class="w-[80%]">
+      <ul class="flex justify-end">
+        <li class="px-2">
+          <a href="" class="text-white text-[13px]">
+            <i class="fa-regular fa-bell"></i>
+            <span>Thông báo</span>
+          </a>
+        </li>
+        <li class="px-2">
+          <a href="" class="text-white text-[13px]">
+            <i class="fa-regular fa-circle-question"></i>
+            <span>Hỗ trợ</span>
+          </a>
+        </li>
+        <li class="px-2" id="language">
+          <a href="#" class="text-white text-[13px] relative">
+            <i class="fa-solid fa-globe"></i>
+            <span>Tiếng Việt</span>
+            <i class="fa-solid fa-chevron-down"></i>
+            <div id="box-language"
+              class="absolute top-[150%] left-[-110%] flex flex-col language w-[200px] bg-white text-gray-500 shadow border border-solid border-gray-300 rounded-sm">
+              <div class="p-[10px] hover:text-primary"><span class="text-[14px]">Tiếng Việt</span></div>
+              <div class="p-[10px] hover:text-primary"><span class="text-[14px]">English</span></div>
+            </div>
+          </a>
+
+        </li>
+        <li class="">
+          <a href="" class=" text-white text-[13px] px-2 border-r border-solid border-[#c2c2c2]">
+            <span>Đăng ký</span>
+          </a>
+        </li>
+        <li class="px-2">
+          <a href="" class="text-white text-[13px]"><span>Đăng nhập</span></a>
+        </li>
+      </ul>
+    </div>
+    <div class="w-[80%] flex items-center justify-center h-[59px] py-[13px]">
+      <div class="w-[15%]">
+        <img src="./Asset/images/image.png" alt="logo" class="w-[180px] h-[55px] pr-6 mb-3">
+      </div>
+
+      <div class="flex w-[70%] flex-col ">
+        <div class="bg-white flex h-[40px] rounded">
+          <input type="text" placeholder="Tìm kiếm...." class="flex-1 rounded-sm p-3 outline-none border-none">
+          <button class="hover:opacity-90 bg-[#ee4d2d] outline-none border-none cursor-pointer m-[3px] px-6 rounded-sm">
+            <i class="fa-solid fa-magnifying-glass text-white "></i>
+          </button>
+        </div>
+        <div>
+          <ul class="flex justify-between">
+            <li class="py-1"><a href="" class="text-white text-[12px]">Săn iPhone 14 Pro Max 1k</a></li>
+            <li class="py-1"><a href="" class="text-white text-[12px]">Áo Phông</a></li>
+            <li class="py-1"><a href="" class="text-white text-[12px]">Dép Nữ</a></li>
+            <li class="py-1"><a href="" class="text-white text-[12px]">Set Đồ Gơn Phố</a></li>
+            <li class="py-1"><a href="" class="text-white text-[12px]">Lovito</a></li>
+            <li class="py-1"><a href="" class="text-white text-[12px]">Áo Phong 1k</a></li>
+            <li class="py-1"><a href="" class="text-white text-[12px]">Son</a></li>
+            <li class="py-1"><a href="" class="text-white text-[12px]">Gấu Bông </a></li>
+            <li class="py-1"><a href="" class="text-white text-[12px]">Set Đồ Nữ Sang Chảnh</a></li>
+            <li class="py-1"><a href="" class="text-white text-[12px]">Quần Đùi Nữ</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="w-[15%] flex justify-center items-center">
+        <button class="text-white  cursor-pointer px-5 outline-none border-none relative" id="cart"><i
+            class="fa-solid fa-cart-shopping text-[26px]"></i>
+          <div
+            class="w-[350px] h-[350px] bg-white absolute top-[150%] right-[20px] shadow rounded-sm border border-solid border-gray-300"
+            id="box-cart">
+            <div class="p-14 h-[80%] bg-cart bg-cover ">
+
+            </div>
+            <p class="text-primary text-[14px]">chưa có sản phẩm</p>
+
+          </div>
+      </div>
+      </button>
+    </div>
+  </div>
+  </div>
+
+  <!-- body -->
+  <div class="flex justify-center items-center">
+    <div class="w-[80%] flex mt-10 ">
+      <div class="w-[15%] mr-3">
+
+        <div class="flex flex-col">
+          <div class="flex items-center gap-2 border-b border-gray-300 h-[50px]">
+            <div class="flex">
+              <i class="fa-solid fa-ellipsis-vertical"></i>
+              <i class="fa-solid fa-bars"></i>
+            </div>
+            <h3 class="font-bold">Tất cả danh mục</h3>
+          </div>
+          <div>
+            <div class="flex flex-col p-3 gap-2 text-[14px]">
+              <div class="relative">
+                <a href="" class="text-[#EE4D2D] font-bold text-[14px]">Thời Trang Nam</a>
+                <i class="fa-solid fa-caret-right absolute top-[8px] left-[-14px] text-[10px] text-[#EE4D2D]"></i>
+              </div>
+              <a href="">Áo Khoác</a>
+              <a href="">Áo Vest Và Blazer</a>
+              <a href="">Áo Hoodie, Áo Len & Áo nỉ</a>
+              <a href="">Quần Jeans</a>
+              <a href="">Quần Dài/Quần Âu</a>
+              <a href="">
+                Thêm
+                <i class="fa-solid fa-angle-down"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="border-b border-solid border-[#c2c2c2]">
+          <div class="flex items-center gap-2 mt-7">
+            <i class="fa-solid fa-filter"></i>
+            <h3 class="uppercase  font-bold">Bộ lọc tìm kiếm</h3>
+          </div>
+          <div class="pt-5 mb-2">
+            <span>Theo danh mục</span>
+          </div>
+          <div>
+            <div class="flex flex-col text-[14px] p-1 gap-2 pt-2 pb-7">
+              <div class="flex">
+                <input type="checkbox" name="" id="" class="mr-1.5">
+                <a href="">Áo thun</a>
+              </div>
+              <div class="flex">
+                <input type="checkbox" name="" id="" class="mr-1.5">
+                <a href="">Áo Sơ mi</a>
+              </div>
+              <div class="flex">
+                <input type="checkbox" name="" id="" class="mr-1.5">
+                <a href="">Áo Vest Và Blazer</a>
+              </div>
+              <a href="" class="ml-3">
+                Thêm
+                <i class="fa-solid fa-angle-down"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="py-5 border-b border-solid border-[#c2c2c2]">
+          <span class="mb-3 block">Khoảng Giá</span>
+          <div class="flex items-center justify-between">
+            <input type="text" placeholder="₫ TỪ"
+              class="w-[43.5%] border-solid border-[#c2c2c2] outline-none border-[1px] px-1 py-0.5 placeholder:text-[12px]">
+            <i class="fa-solid fa-minus text-[13px] text-[#c2c2c2]"></i>
+            <input type="text" placeholder="₫ ĐẾN"
+              class="w-[43.5%] border-solid border-[#c2c2c2] outline-none border-[1px] px-1 py-0.5 placeholder:text-[12px]">
+          </div>
+          <button class="mt-5 block w-[100%] bg-[#EE4D2D] text-white rounded-sm py-[1px] px-[6px]">ÁP DỤNG</button>
+        </div>
+
+        <div>
+          <button class="mt-5 block w-[100%] bg-[#EE4D2D] text-white rounded-sm py-[1px] px-[6px]">XÓA TẤT CẢ</button>
+        </div>
+      </div>
+
+      <div class="w-[85%] bg-gray-100">
+        <div class="flex py-[13px] px-[20px] items-center gap-2">
+          <div class="text-gray-600 text-[14px]">Sắp xếp theo</div>
+          <div class="flex  justify-between flex-1">
+            <div class="flex gap-4">
+              <button
+                class="bg-primary outline-none border-none cursor-pointer px-[15px] rounded-sm h-[34px] text-white shadow">Phổ
+                Biến</button>
+              <button
+                class="outline-none text-gray-700 border-none cursor-pointer px-[15px] rounded-sm h-[34px] bg-white shadow">Mới
+                Nhất</button>
+              <button
+                class="outline-none text-gray-700 border-none cursor-pointer px-[15px] rounded-sm h-[34px] bg-white shadow">Bán
+                chạy</button>
+              <button class="w-[200px] text-gray-700 bg-white flex justify-between items-center px-3 rounded-sm shadow">
+                Giá
+                <i class="fa-solid fa-angle-down"></i>
+              </button>
+            </div>
+            <div class="flex justify-stretch gap-0.5">
+              <div class="flex items-center pr-3">
+                <span class="text-primary">1</span>
+                <span>/</span>
+                <span>9</span>
+              </div>
+              <button
+                class="bg-white flex justify-between items-center px-3 rounded-sm border-[#c2c2c2] border-solid border-[1px] shadow cursor-pointer hover:opacity-50"><i
+                  class="fa-solid fa-angle-left text-gray-600 text-[12px]"></i></button>
+              <button
+                class="bg-white flex justify-between items-center px-3 rounded-sm border-[#c2c2c2] border-solid border-[1px] shadow cursor-pointer hover:opacity-50"><i
+                  class="fa-solid fa-angle-right text-gray-600 text-[12px]"></i></button>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="flex flex-wrap">
+          <div class="flex w-[20%] ">
+            <a href="#" class="m-1 flex flex-col shadow min-h-[335.8px] transition ease-in-out hover:scale-1.03">
+              <img src="https://down-vn.img.susercontent.com/file/4545807e20c3ff3d27cebf4172be637a_tn" alt=""
+                class="w-[188px] h-[188px]">
+              <div class="flex flex-col p-1">
+                <div>
+                  <div class="text-[12px] line-clamp-2">Quần đùi nam asdas asdsad ádsasa </div>
+                  <div class="text-[10px]"><span class="text-[10px] border border-[#EE4D2D] text-primary px-2 py-0.5">Rẻ
+                      vô
+                      địch</span>
+                  </div>
+                </div>
+                <div class="flex items-center justify-stretch gap-1  pt-2">
+                  <div class="flex items-center">
+                    <span class="text-[12px] text-primary font-extralight">₫</span>
+                    <span class="text-[16px] text-primary font-extralight">32.000</span>
+                  </div>
+                  <div class="flex items-center">
+                    <del class="text-[12px] text-gray-600 font-extralight">₫</del>
+                    <del class="text-[14px] text-gray-600 font-extralight">58.000</del>
+                  </div>
+                  <div>
+                    <span class="text-[10px] text-primary">-45%</span>
+                  </div>
+                </div>
+                <div class="flex items-center mt-3">
+                  <div class="flex text-[9px]">
+                    <i class=" fa-solid fa-star text-yellow-400"></i>
+                    <i class="fa-solid fa-star text-yellow-400"></i>
+                    <i class="fa-solid fa-star text-yellow-400"></i>
+                    <i class="fa-solid fa-star text-yellow-400"></i>
+                    <i class="fa-regular fa-star"></i>
+                  </div>
+
+                  <span class="pl-1 text-[12px] block">Đã bán 103,2K</span>
+
+                </div>
+                <div class="mt-2 text-[12px] font-extralight">TP.HCM</div>
+              </div>
+            </a>
+          </div>
+          <div class="flex w-[20%] ">
+            <a href="#" class="m-1 flex flex-col shadow min-h-[335.8px] transition ease-in-out hover:scale-1.03">
+              <img src="https://down-vn.img.susercontent.com/file/4545807e20c3ff3d27cebf4172be637a_tn" alt=""
+                class="w-[188px] h-[188px]">
+              <div class="flex flex-col p-1">
+                <div>
+                  <div class="text-[12px] line-clamp-2">Quần đùi nam asdas asdsad ádsasa </div>
+                  <div class="text-[10px]"><span class="text-[10px] border border-[#EE4D2D] text-primary px-2 py-0.5">Rẻ
+                      vô
+                      địch</span>
+                  </div>
+                </div>
+                <div class="flex items-center justify-stretch gap-1  pt-2">
+                  <div class="flex items-center">
+                    <span class="text-[12px] text-primary font-extralight">₫</span>
+                    <span class="text-[16px] text-primary font-extralight">32.000</span>
+                  </div>
+                  <div class="flex items-center">
+                    <del class="text-[12px] text-gray-600 font-extralight">₫</del>
+                    <del class="text-[14px] text-gray-600 font-extralight">58.000</del>
+                  </div>
+                  <div>
+                    <span class="text-[10px] text-primary">-45%</span>
+                  </div>
+                </div>
+                <div class="flex items-center mt-3">
+                  <div class="flex text-[9px]">
+                    <i class=" fa-solid fa-star text-yellow-400"></i>
+                    <i class="fa-solid fa-star text-yellow-400"></i>
+                    <i class="fa-solid fa-star text-yellow-400"></i>
+                    <i class="fa-solid fa-star text-yellow-400"></i>
+                    <i class="fa-regular fa-star"></i>
+                  </div>
+
+                  <span class="pl-1 text-[12px] block">Đã bán 103,2K</span>
+
+                </div>
+                <div class="mt-2 text-[12px] font-extralight">TP.HCM</div>
+              </div>
+            </a>
+          </div>
+          <div class="flex w-[20%] ">
+            <a href="#" class="m-1 flex flex-col shadow min-h-[335.8px] transition ease-in-out hover:scale-1.03">
+              <img src="https://down-vn.img.susercontent.com/file/4545807e20c3ff3d27cebf4172be637a_tn" alt=""
+                class="w-[188px] h-[188px]">
+              <div class="flex flex-col p-1">
+                <div>
+                  <div class="text-[12px] line-clamp-2">Quần đùi nam asdas asdsad ádsasa </div>
+                  <div class="text-[10px]"><span class="text-[10px] border border-[#EE4D2D] text-primary px-2 py-0.5">Rẻ
+                      vô
+                      địch</span>
+                  </div>
+                </div>
+                <div class="flex items-center justify-stretch gap-1  pt-2">
+                  <div class="flex items-center">
+                    <span class="text-[12px] text-primary font-extralight">₫</span>
+                    <span class="text-[16px] text-primary font-extralight">32.000</span>
+                  </div>
+                  <div class="flex items-center">
+                    <del class="text-[12px] text-gray-600 font-extralight">₫</del>
+                    <del class="text-[14px] text-gray-600 font-extralight">58.000</del>
+                  </div>
+                  <div>
+                    <span class="text-[10px] text-primary">-45%</span>
+                  </div>
+                </div>
+                <div class="flex items-center mt-3">
+                  <div class="flex text-[9px]">
+                    <i class=" fa-solid fa-star text-yellow-400"></i>
+                    <i class="fa-solid fa-star text-yellow-400"></i>
+                    <i class="fa-solid fa-star text-yellow-400"></i>
+                    <i class="fa-solid fa-star text-yellow-400"></i>
+                    <i class="fa-regular fa-star"></i>
+                  </div>
+
+                  <span class="pl-1 text-[12px] block">Đã bán 103,2K</span>
+
+                </div>
+                <div class="mt-2 text-[12px] font-extralight">TP.HCM</div>
+              </div>
+            </a>
+          </div>
+          <div class="flex w-[20%] ">
+            <a href="#" class="m-1 flex flex-col shadow min-h-[335.8px] transition ease-in-out hover:scale-1.03">
+              <img src="https://down-vn.img.susercontent.com/file/4545807e20c3ff3d27cebf4172be637a_tn" alt=""
+                class="w-[188px] h-[188px]">
+              <div class="flex flex-col p-1">
+                <div>
+                  <div class="text-[12px] line-clamp-2">Quần đùi nam asdas asdsad ádsasa </div>
+                  <div class="text-[10px]"><span class="text-[10px] border border-[#EE4D2D] text-primary px-2 py-0.5">Rẻ
+                      vô
+                      địch</span>
+                  </div>
+                </div>
+                <div class="flex items-center justify-stretch gap-1  pt-2">
+                  <div class="flex items-center">
+                    <span class="text-[12px] text-primary font-extralight">₫</span>
+                    <span class="text-[16px] text-primary font-extralight">32.000</span>
+                  </div>
+                  <div class="flex items-center">
+                    <del class="text-[12px] text-gray-600 font-extralight">₫</del>
+                    <del class="text-[14px] text-gray-600 font-extralight">58.000</del>
+                  </div>
+                  <div>
+                    <span class="text-[10px] text-primary">-45%</span>
+                  </div>
+                </div>
+                <div class="flex items-center mt-3">
+                  <div class="flex text-[9px]">
+                    <i class=" fa-solid fa-star text-yellow-400"></i>
+                    <i class="fa-solid fa-star text-yellow-400"></i>
+                    <i class="fa-solid fa-star text-yellow-400"></i>
+                    <i class="fa-solid fa-star text-yellow-400"></i>
+                    <i class="fa-regular fa-star"></i>
+                  </div>
+
+                  <span class="pl-1 text-[12px] block">Đã bán 103,2K</span>
+
+                </div>
+                <div class="mt-2 text-[12px] font-extralight">TP.HCM</div>
+              </div>
+            </a>
+          </div>
+          <div class="flex w-[20%] ">
+            <a href="#" class="m-1 flex flex-col shadow min-h-[335.8px] transition ease-in-out hover:scale-1.03">
+              <img src="https://down-vn.img.susercontent.com/file/4545807e20c3ff3d27cebf4172be637a_tn" alt=""
+                class="w-[188px] h-[188px]">
+              <div class="flex flex-col p-1">
+                <div>
+                  <div class="text-[12px] line-clamp-2">Quần đùi nam asdas asdsad ádsasa </div>
+                  <div class="text-[10px]"><span class="text-[10px] border border-[#EE4D2D] text-primary px-2 py-0.5">Rẻ
+                      vô
+                      địch</span>
+                  </div>
+                </div>
+                <div class="flex items-center justify-stretch gap-1  pt-2">
+                  <div class="flex items-center">
+                    <span class="text-[12px] text-primary font-extralight">₫</span>
+                    <span class="text-[16px] text-primary font-extralight">32.000</span>
+                  </div>
+                  <div class="flex items-center">
+                    <del class="text-[12px] text-gray-600 font-extralight">₫</del>
+                    <del class="text-[14px] text-gray-600 font-extralight">58.000</del>
+                  </div>
+                  <div>
+                    <span class="text-[10px] text-primary">-45%</span>
+                  </div>
+                </div>
+                <div class="flex items-center mt-3">
+                  <div class="flex text-[9px]">
+                    <i class=" fa-solid fa-star text-yellow-400"></i>
+                    <i class="fa-solid fa-star text-yellow-400"></i>
+                    <i class="fa-solid fa-star text-yellow-400"></i>
+                    <i class="fa-solid fa-star text-yellow-400"></i>
+                    <i class="fa-regular fa-star"></i>
+                  </div>
+
+                  <span class="pl-1 text-[12px] block">Đã bán 103,2K</span>
+
+                </div>
+                <div class="mt-2 text-[12px] font-extralight">TP.HCM</div>
+              </div>
+            </a>
+          </div>
+          <div class="flex w-[20%] ">
+            <a href="#" class="m-1 flex flex-col shadow min-h-[335.8px] transition ease-in-out hover:scale-1.03">
+              <img src="https://down-vn.img.susercontent.com/file/4545807e20c3ff3d27cebf4172be637a_tn" alt=""
+                class="w-[188px] h-[188px]">
+              <div class="flex flex-col p-1">
+                <div>
+                  <div class="text-[12px] line-clamp-2">Quần đùi nam asdas asdsad ádsasa </div>
+                  <div class="text-[10px]"><span class="text-[10px] border border-[#EE4D2D] text-primary px-2 py-0.5">Rẻ
+                      vô
+                      địch</span>
+                  </div>
+                </div>
+                <div class="flex items-center justify-stretch gap-1  pt-2">
+                  <div class="flex items-center">
+                    <span class="text-[12px] text-primary font-extralight">₫</span>
+                    <span class="text-[16px] text-primary font-extralight">32.000</span>
+                  </div>
+                  <div class="flex items-center">
+                    <del class="text-[12px] text-gray-600 font-extralight">₫</del>
+                    <del class="text-[14px] text-gray-600 font-extralight">58.000</del>
+                  </div>
+                  <div>
+                    <span class="text-[10px] text-primary">-45%</span>
+                  </div>
+                </div>
+                <div class="flex items-center mt-3">
+                  <div class="flex text-[9px]">
+                    <i class=" fa-solid fa-star text-yellow-400"></i>
+                    <i class="fa-solid fa-star text-yellow-400"></i>
+                    <i class="fa-solid fa-star text-yellow-400"></i>
+                    <i class="fa-solid fa-star text-yellow-400"></i>
+                    <i class="fa-regular fa-star"></i>
+                  </div>
+
+                  <span class="pl-1 text-[12px] block">Đã bán 103,2K</span>
+
+                </div>
+                <div class="mt-2 text-[12px] font-extralight">TP.HCM</div>
+              </div>
+            </a>
+          </div>
+
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <!-- footer -->
+  <div class="footer">
+    <div class="footer-border">
+      <div class="footer__license">
+        <div class="footer__license-permission">
+          <span>© 2024 Shopee. Tất cả các quyền được bảo lưu.</span>
+        </div>
+        <div class="footer__license-country">
+          <span>Quốc gia & khu vực:</span>
+          <a href="#">Singaport</a>
+          <a href="#">Indonesia</a>
+          <a href="#">Thái Lan</a>
+          <a href="#">Malaysia</a>
+          <a href="#">Việt Nam</a>
+          <a href="#">Philippines</a>
+          <a href="#">Brazil</a>
+          <a href="#">Mexico</a>
+          <a href="#">Colombia</a>
+          <a href="#">Chile</a>
+          <a href="#">Đài Loan</a>
+        </div>
+      </div>
+      <div class="footer__policy">
+        <span>chính sách bảo mật</span>
+        <span>cơ chế hoạt động</span>
+        <span>chính sách vận chuyển</span>
+        <span>chính sách trả hàng và hoàn tiền</span>
+      </div>
+      <div class="footer__image">
+        <img src="../Asset/images/license.png" alt="" class="footer__image-first">
+        <img src="../Asset/images/license.png" alt="" class="footer__image-second">
+        <img src="../Asset/images/license-circle.png" alt="" class="footer__image-third">
+      </div>
+      <div class="footer__company">
+        <span>Công ty TNHH Shopee</span>
+      </div>
+      <div class="footer__location">
+        <span>Địa chỉ: Tầng 4-5-6, Tòa nhà Capital Place, số 29 đường Liễu Giai, Phường Ngọc Khánh, Quận Ba
+          Đình, Thành phố Hà Nội, Việt Nam. Tổng đài hỗ trợ: 19001221 - Email: cskh@hotro.shopee.vn
+        </span>
+        <span>Chịu Trách Nhiệm Quản Lý Nội Dung: Nguyễn Bùi Anh Tuấn</span>
+        <span>Mã số doanh nghiệp: 0106773786 do Sở Kế hoạch & Đầu tư TP Hà Nội cấp lần đầu ngày
+          10/02/2015</span>
+        <span>© 2015 - Bản quyền thuộc về Công ty TNHH Shopee</span>
+      </div>
+    </div>
+  </div>
+
+
+
   <script type="module" src="/main.js"></script>
 </body>
 

@@ -1,16 +1,135 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Register</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="32x32" href="../Asset/images/icon.png">
+    <title>Đăng Ký</title>
 </head>
 
 <body>
-    <h1>Register</h1>
-    <!-- <script type="module" src="./register.js"></script> -->
+    <!-- Header -->
+    <div class="header">
+        <div class="header__title">
+            <div class="header__title-logo">
+                <a href="/">
+                    <img src="../Asset/images/logo.png" alt="logo">
+                </a>
+                <span>Đăng Ký</span>
+            </div>
+            <a class="header__title-help">Bạn cần giúp đỡ?</a>
+        </div>
+    </div>
+
+    <!-- content -->
+    <div class="content">
+        <div class="container">
+            <form class="container__formlogin form-register">
+                <div class="container__formlogin-title spaceXY">
+                    <h3>
+                        Đăng ký
+                    </h3>
+                </div>
+
+
+                <div class="container__formlogin-field spaceX">
+                    <div>
+                        <input type="text" value="0852 097 564" placeholder="Email/Số điện thoại/Tên Đăng nhập">
+                    </div>
+                    <div>
+                        <input type="password" placeholder="Mật khẩu">
+                        <i class="fa-regular fa-eye-slash"></i>
+                    </div>
+                    <div>
+                        <input type="repassword" placeholder="Nhập lại mật khẩu">
+                        <i class="fa-regular fa-eye-slash"></i>
+                    </div>
+                    <button>ĐĂNG KÝ</button>
+                </div>
+
+                <div class="container__formlogin-line margin-line">
+                    <hr>
+                </div>
+
+                <div class="container__formlogin-auth spaceXY">
+                    <button>
+                        <i class="fa-brands fa-facebook icon-fb"></i>
+                        <span>Facebook</span>
+                    </button>
+                    <button>
+                        <i class="fa-brands fa-google icon-google"></i>
+                        <span>Google</span>
+                    </button>
+                </div>
+
+                <div class="container__formlogin-support">
+                    <span>Bằng việc đăng kí, bạn đã đồng ý với Shopee về</span>
+                    <div>
+                        <a href="#">Điều khoản dịch vụ</a>
+                        <span>&</span>
+                        <a href="#">Chính sách bảo mật</a>
+                    </div>
+                </div>
+
+                <div class="container__formlogin-link">
+                    <span>Bạn đã có tài khoản?</span>
+                    <a href="/login/">Đăng nhập</a>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+    <!-- footer -->
+    <div class="footer">
+        <div class="footer-border">
+            <div class="footer__license">
+                <div class="footer__license-permission">
+                    <span>© 2024 Shopee. Tất cả các quyền được bảo lưu.</span>
+                </div>
+                <div class="footer__license-country">
+                    <span>Quốc gia & khu vực:</span>
+                    <a href="#">Singaport</a>
+                    <a href="#">Indonesia</a>
+                    <a href="#">Thái Lan</a>
+                    <a href="#">Malaysia</a>
+                    <a href="#">Việt Nam</a>
+                    <a href="#">Philippines</a>
+                    <a href="#">Brazil</a>
+                    <a href="#">Mexico</a>
+                    <a href="#">Colombia</a>
+                    <a href="#">Chile</a>
+                    <a href="#">Đài Loan</a>
+                </div>
+            </div>
+            <div class="footer__policy">
+                <span>chính sách bảo mật</span>
+                <span>cơ chế hoạt động</span>
+                <span>chính sách vận chuyển</span>
+                <span>chính sách trả hàng và hoàn tiền</span>
+            </div>
+            <div class="footer__image">
+                <img src="../Asset/images/license.png" alt="" class="footer__image-first">
+                <img src="../Asset/images/license.png" alt="" class="footer__image-second">
+                <img src="../Asset/images/license-circle.png" alt="" class="footer__image-third">
+            </div>
+            <div class="footer__company">
+                <span>Công ty TNHH Shopee</span>
+            </div>
+            <div class="footer__location">
+                <span>Địa chỉ: Tầng 4-5-6, Tòa nhà Capital Place, số 29 đường Liễu Giai, Phường Ngọc Khánh, Quận Ba
+                    Đình, Thành phố Hà Nội, Việt Nam. Tổng đài hỗ trợ: 19001221 - Email: cskh@hotro.shopee.vn
+                </span>
+                <span>Chịu Trách Nhiệm Quản Lý Nội Dung: Nguyễn Bùi Anh Tuấn</span>
+                <span>Mã số doanh nghiệp: 0106773786 do Sở Kế hoạch & Đầu tư TP Hà Nội cấp lần đầu ngày
+                    10/02/2015</span>
+                <span>© 2015 - Bản quyền thuộc về Công ty TNHH Shopee</span>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="./register.js"></script>
 </body>
 
 </html>
