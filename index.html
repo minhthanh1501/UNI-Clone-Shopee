@@ -5,6 +5,7 @@
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/Asset/images/icon.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- <meta http-equiv="refresh" content="0;url=http://localhost:5000/products?_page=1"> -->
   <title>Trang chủ</title>
 </head>
 
@@ -39,12 +40,12 @@
 
         </li>
         <li class="">
-          <a href="" class=" text-white text-[13px] px-2 border-r border-solid border-[#c2c2c2]">
+          <a href="/register/" class=" text-white text-[13px] px-2 border-r border-solid border-[#c2c2c2]">
             <span>Đăng ký</span>
           </a>
         </li>
         <li class="px-2">
-          <a href="" class="text-white text-[13px]"><span>Đăng nhập</span></a>
+          <a href="/login/" class="text-white text-[13px]"><span>Đăng nhập</span></a>
         </li>
       </ul>
     </div>
@@ -108,8 +109,8 @@
             <h3 class="font-bold">Tất cả danh mục</h3>
           </div>
           <div>
-            <div class="flex flex-col p-3 gap-2 text-[14px]">
-              <div class="relative">
+            <div class="flex flex-col p-3 gap-2 text-[14px]" id="categoriesList">
+              <!-- <div class="relative">
                 <a href="" class="text-[#EE4D2D] font-bold text-[14px]">Thời Trang Nam</a>
                 <i class="fa-solid fa-caret-right absolute top-[8px] left-[-14px] text-[10px] text-[#EE4D2D]"></i>
               </div>
@@ -121,7 +122,7 @@
               <a href="">
                 Thêm
                 <i class="fa-solid fa-angle-down"></i>
-              </a>
+              </a> -->
             </div>
           </div>
         </div>
@@ -179,7 +180,8 @@
           <div class="flex  justify-between flex-1">
             <div class="flex gap-4">
               <button
-                class="bg-primary outline-none border-none cursor-pointer px-[15px] rounded-sm h-[34px] text-white shadow">Phổ
+                class="bg-primary outline-none border-none cursor-pointer px-[15px] rounded-sm h-[34px] text-white shadow"
+                id="popularBtn">Phổ
                 Biến</button>
               <button
                 class="outline-none text-gray-700 border-none cursor-pointer px-[15px] rounded-sm h-[34px] bg-white shadow">Mới
@@ -187,9 +189,21 @@
               <button
                 class="outline-none text-gray-700 border-none cursor-pointer px-[15px] rounded-sm h-[34px] bg-white shadow">Bán
                 chạy</button>
-              <button class="w-[200px] text-gray-700 bg-white flex justify-between items-center px-3 rounded-sm shadow">
+              <button
+                class="w-[200px] text-gray-700 bg-white flex justify-between items-center px-3 rounded-sm shadow relative"
+                id="priceBtn">
                 Giá
                 <i class="fa-solid fa-angle-down"></i>
+                <div
+                  class="bg-white shadow rounded-sm border-gray-600 w-[200px] h-[200%] absolute z-20 top-[100%] left-0"
+                  id="box-price">
+                  <div class="px-3 py-1" id="priceDownToUp"><span
+                      class="text-[14px] font-semibold hover:text-primary">Giá: Thấp đến
+                      cao</span></div>
+                  <div class="px-3 py-1" id="priceUpToDown"><span
+                      class="text-[14px] font-semibold hover:text-primary">Giá: Cao đến
+                      thấp</span></div>
+                </div>
               </button>
             </div>
             <div class="flex justify-stretch gap-0.5">
@@ -209,8 +223,8 @@
 
         </div>
 
-        <div class="flex flex-wrap">
-          <div class="flex w-[20%] ">
+        <div class="flex flex-wrap" id="productsList">
+          <!-- <div class="flex w-[20%] ">
             <a href="#" class="m-1 flex flex-col shadow min-h-[335.8px] transition ease-in-out hover:scale-1.03">
               <img src="https://down-vn.img.susercontent.com/file/4545807e20c3ff3d27cebf4172be637a_tn" alt=""
                 class="w-[188px] h-[188px]">
@@ -250,217 +264,11 @@
                 <div class="mt-2 text-[12px] font-extralight">TP.HCM</div>
               </div>
             </a>
-          </div>
-          <div class="flex w-[20%] ">
-            <a href="#" class="m-1 flex flex-col shadow min-h-[335.8px] transition ease-in-out hover:scale-1.03">
-              <img src="https://down-vn.img.susercontent.com/file/4545807e20c3ff3d27cebf4172be637a_tn" alt=""
-                class="w-[188px] h-[188px]">
-              <div class="flex flex-col p-1">
-                <div>
-                  <div class="text-[12px] line-clamp-2">Quần đùi nam asdas asdsad ádsasa </div>
-                  <div class="text-[10px]"><span class="text-[10px] border border-[#EE4D2D] text-primary px-2 py-0.5">Rẻ
-                      vô
-                      địch</span>
-                  </div>
-                </div>
-                <div class="flex items-center justify-stretch gap-1  pt-2">
-                  <div class="flex items-center">
-                    <span class="text-[12px] text-primary font-extralight">₫</span>
-                    <span class="text-[16px] text-primary font-extralight">32.000</span>
-                  </div>
-                  <div class="flex items-center">
-                    <del class="text-[12px] text-gray-600 font-extralight">₫</del>
-                    <del class="text-[14px] text-gray-600 font-extralight">58.000</del>
-                  </div>
-                  <div>
-                    <span class="text-[10px] text-primary">-45%</span>
-                  </div>
-                </div>
-                <div class="flex items-center mt-3">
-                  <div class="flex text-[9px]">
-                    <i class=" fa-solid fa-star text-yellow-400"></i>
-                    <i class="fa-solid fa-star text-yellow-400"></i>
-                    <i class="fa-solid fa-star text-yellow-400"></i>
-                    <i class="fa-solid fa-star text-yellow-400"></i>
-                    <i class="fa-regular fa-star"></i>
-                  </div>
-
-                  <span class="pl-1 text-[12px] block">Đã bán 103,2K</span>
-
-                </div>
-                <div class="mt-2 text-[12px] font-extralight">TP.HCM</div>
-              </div>
-            </a>
-          </div>
-          <div class="flex w-[20%] ">
-            <a href="#" class="m-1 flex flex-col shadow min-h-[335.8px] transition ease-in-out hover:scale-1.03">
-              <img src="https://down-vn.img.susercontent.com/file/4545807e20c3ff3d27cebf4172be637a_tn" alt=""
-                class="w-[188px] h-[188px]">
-              <div class="flex flex-col p-1">
-                <div>
-                  <div class="text-[12px] line-clamp-2">Quần đùi nam asdas asdsad ádsasa </div>
-                  <div class="text-[10px]"><span class="text-[10px] border border-[#EE4D2D] text-primary px-2 py-0.5">Rẻ
-                      vô
-                      địch</span>
-                  </div>
-                </div>
-                <div class="flex items-center justify-stretch gap-1  pt-2">
-                  <div class="flex items-center">
-                    <span class="text-[12px] text-primary font-extralight">₫</span>
-                    <span class="text-[16px] text-primary font-extralight">32.000</span>
-                  </div>
-                  <div class="flex items-center">
-                    <del class="text-[12px] text-gray-600 font-extralight">₫</del>
-                    <del class="text-[14px] text-gray-600 font-extralight">58.000</del>
-                  </div>
-                  <div>
-                    <span class="text-[10px] text-primary">-45%</span>
-                  </div>
-                </div>
-                <div class="flex items-center mt-3">
-                  <div class="flex text-[9px]">
-                    <i class=" fa-solid fa-star text-yellow-400"></i>
-                    <i class="fa-solid fa-star text-yellow-400"></i>
-                    <i class="fa-solid fa-star text-yellow-400"></i>
-                    <i class="fa-solid fa-star text-yellow-400"></i>
-                    <i class="fa-regular fa-star"></i>
-                  </div>
-
-                  <span class="pl-1 text-[12px] block">Đã bán 103,2K</span>
-
-                </div>
-                <div class="mt-2 text-[12px] font-extralight">TP.HCM</div>
-              </div>
-            </a>
-          </div>
-          <div class="flex w-[20%] ">
-            <a href="#" class="m-1 flex flex-col shadow min-h-[335.8px] transition ease-in-out hover:scale-1.03">
-              <img src="https://down-vn.img.susercontent.com/file/4545807e20c3ff3d27cebf4172be637a_tn" alt=""
-                class="w-[188px] h-[188px]">
-              <div class="flex flex-col p-1">
-                <div>
-                  <div class="text-[12px] line-clamp-2">Quần đùi nam asdas asdsad ádsasa </div>
-                  <div class="text-[10px]"><span class="text-[10px] border border-[#EE4D2D] text-primary px-2 py-0.5">Rẻ
-                      vô
-                      địch</span>
-                  </div>
-                </div>
-                <div class="flex items-center justify-stretch gap-1  pt-2">
-                  <div class="flex items-center">
-                    <span class="text-[12px] text-primary font-extralight">₫</span>
-                    <span class="text-[16px] text-primary font-extralight">32.000</span>
-                  </div>
-                  <div class="flex items-center">
-                    <del class="text-[12px] text-gray-600 font-extralight">₫</del>
-                    <del class="text-[14px] text-gray-600 font-extralight">58.000</del>
-                  </div>
-                  <div>
-                    <span class="text-[10px] text-primary">-45%</span>
-                  </div>
-                </div>
-                <div class="flex items-center mt-3">
-                  <div class="flex text-[9px]">
-                    <i class=" fa-solid fa-star text-yellow-400"></i>
-                    <i class="fa-solid fa-star text-yellow-400"></i>
-                    <i class="fa-solid fa-star text-yellow-400"></i>
-                    <i class="fa-solid fa-star text-yellow-400"></i>
-                    <i class="fa-regular fa-star"></i>
-                  </div>
-
-                  <span class="pl-1 text-[12px] block">Đã bán 103,2K</span>
-
-                </div>
-                <div class="mt-2 text-[12px] font-extralight">TP.HCM</div>
-              </div>
-            </a>
-          </div>
-          <div class="flex w-[20%] ">
-            <a href="#" class="m-1 flex flex-col shadow min-h-[335.8px] transition ease-in-out hover:scale-1.03">
-              <img src="https://down-vn.img.susercontent.com/file/4545807e20c3ff3d27cebf4172be637a_tn" alt=""
-                class="w-[188px] h-[188px]">
-              <div class="flex flex-col p-1">
-                <div>
-                  <div class="text-[12px] line-clamp-2">Quần đùi nam asdas asdsad ádsasa </div>
-                  <div class="text-[10px]"><span class="text-[10px] border border-[#EE4D2D] text-primary px-2 py-0.5">Rẻ
-                      vô
-                      địch</span>
-                  </div>
-                </div>
-                <div class="flex items-center justify-stretch gap-1  pt-2">
-                  <div class="flex items-center">
-                    <span class="text-[12px] text-primary font-extralight">₫</span>
-                    <span class="text-[16px] text-primary font-extralight">32.000</span>
-                  </div>
-                  <div class="flex items-center">
-                    <del class="text-[12px] text-gray-600 font-extralight">₫</del>
-                    <del class="text-[14px] text-gray-600 font-extralight">58.000</del>
-                  </div>
-                  <div>
-                    <span class="text-[10px] text-primary">-45%</span>
-                  </div>
-                </div>
-                <div class="flex items-center mt-3">
-                  <div class="flex text-[9px]">
-                    <i class=" fa-solid fa-star text-yellow-400"></i>
-                    <i class="fa-solid fa-star text-yellow-400"></i>
-                    <i class="fa-solid fa-star text-yellow-400"></i>
-                    <i class="fa-solid fa-star text-yellow-400"></i>
-                    <i class="fa-regular fa-star"></i>
-                  </div>
-
-                  <span class="pl-1 text-[12px] block">Đã bán 103,2K</span>
-
-                </div>
-                <div class="mt-2 text-[12px] font-extralight">TP.HCM</div>
-              </div>
-            </a>
-          </div>
-          <div class="flex w-[20%] ">
-            <a href="#" class="m-1 flex flex-col shadow min-h-[335.8px] transition ease-in-out hover:scale-1.03">
-              <img src="https://down-vn.img.susercontent.com/file/4545807e20c3ff3d27cebf4172be637a_tn" alt=""
-                class="w-[188px] h-[188px]">
-              <div class="flex flex-col p-1">
-                <div>
-                  <div class="text-[12px] line-clamp-2">Quần đùi nam asdas asdsad ádsasa </div>
-                  <div class="text-[10px]"><span class="text-[10px] border border-[#EE4D2D] text-primary px-2 py-0.5">Rẻ
-                      vô
-                      địch</span>
-                  </div>
-                </div>
-                <div class="flex items-center justify-stretch gap-1  pt-2">
-                  <div class="flex items-center">
-                    <span class="text-[12px] text-primary font-extralight">₫</span>
-                    <span class="text-[16px] text-primary font-extralight">32.000</span>
-                  </div>
-                  <div class="flex items-center">
-                    <del class="text-[12px] text-gray-600 font-extralight">₫</del>
-                    <del class="text-[14px] text-gray-600 font-extralight">58.000</del>
-                  </div>
-                  <div>
-                    <span class="text-[10px] text-primary">-45%</span>
-                  </div>
-                </div>
-                <div class="flex items-center mt-3">
-                  <div class="flex text-[9px]">
-                    <i class=" fa-solid fa-star text-yellow-400"></i>
-                    <i class="fa-solid fa-star text-yellow-400"></i>
-                    <i class="fa-solid fa-star text-yellow-400"></i>
-                    <i class="fa-solid fa-star text-yellow-400"></i>
-                    <i class="fa-regular fa-star"></i>
-                  </div>
-
-                  <span class="pl-1 text-[12px] block">Đã bán 103,2K</span>
-
-                </div>
-                <div class="mt-2 text-[12px] font-extralight">TP.HCM</div>
-              </div>
-            </a>
-          </div>
-
-
-
+          </div> -->
 
         </div>
+
+        <div class="flex items-center justify-center gap-10 mt-5" id="paginationProducts"></div>
       </div>
     </div>
   </div>
@@ -517,6 +325,9 @@
 
 
   <script type="module" src="/main.js"></script>
+  <!-- <script type="module" src="./Asset/js/animations/animations.js"></script> -->
+  <!-- <script type="module" src="./Asset/js/categories/categories.js"></script>
+  <script type="module" src="./Asset/js/products/products.js"></script> -->
 </body>
 
 </html>
