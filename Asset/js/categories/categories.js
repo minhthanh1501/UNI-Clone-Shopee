@@ -1,4 +1,36 @@
 import * as apis from "../../../apis";
+import { fetchProducts } from "../products/products";
+
+const checkboxes = document.getElementsByName("filter");
+checkboxes.forEach((item) => {
+  document.getElementById(item.id).addEventListener("click", () => {});
+});
+
+document.getElementById("submitPrice").addEventListener("click", () => {
+  const minPrice = document.getElementById("minPrice").value;
+  const maxPrice = document.getElementById("maxPrice").value;
+
+  const url = new URL(location);
+  const params = new URLSearchParams(url.search);
+
+  if (minPrice !== "") {
+    params.set("_minprice", minPrice);
+  } else {
+    params.delete("_minprice");
+  }
+
+  if (maxPrice !== "") {
+    params.set("_maxprice", maxPrice);
+  } else {
+    params.delete("_maxprice");
+  }
+
+  const NewUrl = `${url.protocol}//${url.host}${
+    url.pathname
+  }?${params.toString()}`;
+  history.pushState(null, "", NewUrl);
+  fetchProducts();
+});
 
 const categoriesList = document.getElementById("categoriesList");
 let limitCurrent = 5;
@@ -14,13 +46,9 @@ const fetchCategories = async () => {
 };
 
 const showDataCategories = async (response) => {
-  let html = `<div class="relative">
-          <button id="category${response[0].id}" value="${response[0].id}" class="text-[#EE4D2D] font-bold text-[14px]">${response[0].name}</button>
-          <i class="fa-solid fa-caret-right absolute top-[8px] left-[-14px] text-[10px] text-[#EE4D2D]"></i>
-        </div>`;
+  let html = "";
 
   html += response
-    .slice(1)
     .map(
       (category) =>
         `<button id="category${category.id}" class="flex" value="${category.id}">${category.name}</button>`
@@ -58,12 +86,52 @@ const attachLoadMoreEvent = () => {
     document.getElementById(item.id).addEventListener("click", (e) => {
       e.preventDefault();
       const url = new URL(location);
-      const orgin = url.origin;
-      const newURL = orgin + `/category=${item.value}`;
-      history.pushState(null, "", newURL);
-      // fetchProductByCategory();
+      let params = "";
+      console.log(url);
+      if (url.searchParams.get("_page") == null) {
+        params += `?_page=1`;
+        if (url.searchParams.get("_sort") == null) {
+          params += `&_sort=price`;
+        }
+        params += `&_category=${item.value}`;
+        const NewUrl = url.protocol + `//` + url.host + `/` + params;
+        history.pushState({ category: 1 }, "", NewUrl);
+        fetchProducts().then(() => {
+          setActive(item.id);
+        });
+        console.log(NewUrl);
+      } else {
+        if (url.searchParams.get("_sort") != null) {
+          params += `&_sort=${url.searchParams.get("_sort")}`;
+        }
+        params += `&_category=${item.value}`;
+        const NewUrl =
+          url.protocol +
+          `//` +
+          url.host +
+          `/` +
+          `?_page=${url.searchParams.get("_page")}` +
+          params;
+        history.pushState({ category: 1 }, "", NewUrl);
+        fetchProducts().then(() => {
+          setActive(item.id);
+        });
+        console.log(NewUrl);
+      }
     });
   });
 };
+
+function setActive(itemId) {
+  const items = document.querySelectorAll("button.flex");
+  items.forEach((item) => {
+    item.classList.remove("active");
+  });
+
+  let activeItem = document.getElementById(itemId);
+  if (activeItem) {
+    activeItem.classList.add("active");
+  }
+}
 
 fetchCategories();

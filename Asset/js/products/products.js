@@ -6,14 +6,16 @@ const popularBtn = document.getElementById("popularBtn");
 
 let currentPage;
 let sort;
+let category;
+let minprice;
+let maxprice;
 
 popularBtn.addEventListener("click", function () {
   const url = new URL(location);
   let origin = url.origin;
   let pathname = url.pathname;
   let searchParams = url.searchParams;
-  if (pathname == "/" && searchParams.get("_page") === null) {
-    pathname = "/products";
+  if (searchParams.get("_page") === null) {
     searchParams.set("_page", 1);
   }
 
@@ -21,17 +23,16 @@ popularBtn.addEventListener("click", function () {
   console.log(url);
   sort = url.searchParams.get("_sort");
   const newUrl = origin + pathname + `?` + searchParams;
+  // newUrl.replace("/?", "?");
+  console.log(newUrl);
   history.pushState(null, "", newUrl);
 
   fetchProducts();
 });
 
-const fetchProducts = async () => {
+export const fetchProducts = async () => {
   try {
     const url = new URL(location);
-    const href = url.href;
-    const origin = url.origin;
-    const pathname = url.pathname;
     const searchParams = url.searchParams;
 
     console.log(url);
@@ -44,7 +45,26 @@ const fetchProducts = async () => {
       ? (sort = "price")
       : (sort = searchParams.get("_sort"));
 
-    const response = await apis.apiGetProductsFilter(currentPage, 20, sort);
+    searchParams.get("_category") === null
+      ? (category = 1)
+      : (category = searchParams.get("_category"));
+
+    searchParams.get("_minprice") === null
+      ? (minprice = 0)
+      : (minprice = searchParams.get("_minprice"));
+
+    searchParams.get("_maxprice") === null
+      ? (maxprice = 100000)
+      : (maxprice = searchParams.get("_maxprice"));
+
+    const response = await apis.apiGetProductsFilter(
+      currentPage,
+      20,
+      sort,
+      category,
+      minprice,
+      maxprice
+    );
     console.log(response);
 
     showDataProducts(response);
@@ -131,7 +151,9 @@ const showDataProducts = (response) => {
 const ShowPaginationProducts = (response) => {
   let paginationHtml = "";
 
-  paginationHtml += `<button  class="flex justify-between items-center px-3 rounded-sm  cursor-pointer hover:opacity-50" id="prevBtn"><i
+  paginationHtml += `<button  class="flex justify-between items-center px-3 rounded-sm  cursor-pointer hover:opacity-50" id="prevBtn" ${
+    parseInt(currentPage) === 1 ? "disabled" : ""
+  }><i
                 class="fa-solid fa-angle-left text-gray-400 text-[17px]"></i></button>`;
 
   for (let index = 1; index <= response.pages; index++) {
@@ -140,7 +162,9 @@ const ShowPaginationProducts = (response) => {
     `;
   }
 
-  paginationHtml += `<button class="flex justify-between items-center px-3 rounded-sm  cursor-pointer hover:opacity-50" id="nextBtn"><i
+  paginationHtml += `<button class="flex justify-between items-center px-3 rounded-sm  cursor-pointer hover:opacity-50" id="nextBtn" ${
+    parseInt(currentPage) === 3 ? "disabled" : ""
+  }><i
                 class="fa-solid fa-angle-right text-gray-400 text-[17px]"></i></button>`;
 
   paginationProducts.innerHTML = paginationHtml;
@@ -155,36 +179,69 @@ const ShowPaginationProducts = (response) => {
 };
 
 const attachLoadMoreEventProducts = () => {
+  const prevBtn = document.getElementById("prevBtn");
+  const nextBtn = document.getElementById("nextBtn");
+
+  prevBtn.addEventListener("click", () => {
+    const url = new URL(location);
+    let newPage = parseInt(url.searchParams.get("_page")) - 1;
+    console.log(newPage);
+    url.searchParams.set("_page", newPage);
+    history.pushState(null, "", url);
+    fetchProducts();
+  });
+
+  nextBtn.addEventListener("click", () => {
+    const url = new URL(location);
+    let newPage = parseInt(url.searchParams.get("_page")) + 1;
+    console.log(newPage);
+    url.searchParams.set("_page", newPage);
+    history.pushState(null, "", url);
+    fetchProducts();
+    // console.log(parseInt(url.searchParams.get("_page")) === 3);
+  });
+
   const items = document.querySelectorAll('[id^="item"]');
   items.forEach((item) => {
     document.getElementById(item.id).addEventListener("click", function () {
       // Thay đổi URL mà không tải lại trang
-      let pathname;
       let newUrl;
+      let params;
       const url = new URL(location);
-      if (url.pathname === "/") {
-        pathname = "/products";
-      } else {
-        pathname = url.pathname;
-      }
-      // console.log(url);
       if (url.searchParams.get("_sort") === null) {
         newUrl =
-          url.protocol + "//" + url.host + pathname + `?_page=${item.value}`;
+          url.protocol +
+          "//" +
+          url.host +
+          url.pathname +
+          `?_page=${item.value}` +
+          `&_sort=price`;
       } else {
-        url.searchParams.set("_sort", "rating");
+        if (url.searchParams.get("_category") != null) {
+          params = `&_category=${category}`;
+        } else {
+          params = "";
+        }
+        if (url.searchParams.get("_minprice") != null) {
+          params = `$_minprice=${url.searchParams.get("_minprice")}`;
+          console.log("mp1");
+        }
+        if (url.searchParams.get("_maxprice") != null) {
+          params = `$_maxprice=${url.searchParams.get("_maxprice")}`;
+          console.log("mp2");
+        }
         sort = url.searchParams.get("_sort");
         newUrl =
           url.protocol +
           "//" +
           url.host +
-          pathname +
+          url.pathname +
           `?_page=${item.value}` +
-          `&_sort=${sort}`;
+          `&_sort=${sort}` +
+          params;
       }
-
-      history.pushState({ page: 1 }, "Page 1", newUrl);
       console.log("New URL:", newUrl);
+      history.pushState({ page: 1 }, "Page 1", newUrl);
 
       fetchProducts().then(() => {
         setActive(item.id);
@@ -194,7 +251,7 @@ const attachLoadMoreEventProducts = () => {
 };
 
 function setActive(itemId) {
-  const items = document.querySelectorAll('[id^="item"]');
+  const items = document.querySelectorAll('[id^="`item`"]');
   items.forEach((item) => {
     item.classList.remove("active");
   });

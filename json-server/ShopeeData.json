@@ -1289,6 +1289,14 @@
           "page": 1,
           "limit": 100,
           "page_size": 1
+      },
+      "users": {
+          "id": 1,
+          "username" : "minhthanh",
+          "email" : "mt@gmail.com",
+          "password": "12345678",
+          "role" : "admin",
+          "avatar" :"avatar"
       }
   
 }

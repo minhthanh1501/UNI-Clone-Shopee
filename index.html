@@ -51,7 +51,7 @@
     </div>
     <div class="w-[80%] flex items-center justify-center h-[59px] py-[13px]">
       <div class="w-[15%]">
-        <img src="./Asset/images/image.png" alt="logo" class="w-[180px] h-[55px] pr-6 mb-3">
+        <a href="/"><img src="./Asset/images/image.png" alt="logo" class="w-[180px] h-[55px] pr-6 mb-3"></a>
       </div>
 
       <div class="flex w-[70%] flex-col ">
@@ -138,16 +138,16 @@
           <div>
             <div class="flex flex-col text-[14px] p-1 gap-2 pt-2 pb-7">
               <div class="flex">
-                <input type="checkbox" name="" id="" class="mr-1.5">
-                <a href="">Áo thun</a>
+                <input type="checkbox" name="filter" id="filter1" class="mr-1.5" value="Áo thun">
+                <label for="filter1">Áo thun</label>
               </div>
               <div class="flex">
-                <input type="checkbox" name="" id="" class="mr-1.5">
-                <a href="">Áo Sơ mi</a>
+                <input type="checkbox" name="filter" id="filter2" class="mr-1.5" value="Áo Sơ mi">
+                <label for="filter2">Áo Sơ mi</label>
               </div>
               <div class="flex">
-                <input type="checkbox" name="" id="" class="mr-1.5">
-                <a href="">Áo Vest Và Blazer</a>
+                <input type="checkbox" name="filter" id="filter3" class="mr-1.5" value="Áo Vest Và Blazer">
+                <label for="filter3">Áo Vest Và Blazer</label>
               </div>
               <a href="" class="ml-3">
                 Thêm
@@ -160,13 +160,14 @@
         <div class="py-5 border-b border-solid border-[#c2c2c2]">
           <span class="mb-3 block">Khoảng Giá</span>
           <div class="flex items-center justify-between">
-            <input type="text" placeholder="₫ TỪ"
+            <input type="text" placeholder="₫ TỪ" name="minPrice" id="minPrice"
               class="w-[43.5%] border-solid border-[#c2c2c2] outline-none border-[1px] px-1 py-0.5 placeholder:text-[12px]">
             <i class="fa-solid fa-minus text-[13px] text-[#c2c2c2]"></i>
-            <input type="text" placeholder="₫ ĐẾN"
+            <input type="text" placeholder="₫ ĐẾN" name="maxPrice" id="maxPrice"
               class="w-[43.5%] border-solid border-[#c2c2c2] outline-none border-[1px] px-1 py-0.5 placeholder:text-[12px]">
           </div>
-          <button class="mt-5 block w-[100%] bg-[#EE4D2D] text-white rounded-sm py-[1px] px-[6px]">ÁP DỤNG</button>
+          <button class="mt-5 block w-[100%] bg-[#EE4D2D] text-white rounded-sm py-[1px] px-[6px]" id="submitPrice">ÁP
+            DỤNG</button>
         </div>
 
         <div>

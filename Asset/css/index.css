@@ -83,5 +83,11 @@
 
 .active {
     background-color: #EE4D2D;
+    border-radius: 5px;
+    padding: 6px;
     color: white;
+}
+
+.disable {
+    color: grey;
 }
