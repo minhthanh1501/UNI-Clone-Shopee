@@ -9,6 +9,7 @@ let sort;
 let category;
 let minprice;
 let maxprice;
+let filter;
 
 popularBtn.addEventListener("click", function () {
   const url = new URL(location);
@@ -57,13 +58,18 @@ export const fetchProducts = async () => {
       ? (maxprice = 100000)
       : (maxprice = searchParams.get("_maxprice"));
 
+    searchParams.get("_filter") === null
+      ? (filter = "")
+      : (filter = searchParams.get("_filter"));
+
     const response = await apis.apiGetProductsFilter(
       currentPage,
       20,
       sort,
       category,
       minprice,
-      maxprice
+      maxprice,
+      filter
     );
     console.log(response);
 

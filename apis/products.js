@@ -6,10 +6,11 @@ export const apiGetProductsFilter = (
   sort,
   category,
   minprice,
-  maxprice
+  maxprice,
+  filter
 ) =>
   axios({
-    url: `/products?_page=${page}&_per_page=${per_page}&_sort=${sort}&_category=${category}&_minprice=${minprice}&_maxprice=${maxprice}`,
+    url: `/products?_page=${page}&_per_page=${per_page}&_sort=${sort}&_category=${category}&_minprice=${minprice}&_maxprice=${maxprice}&_filter=${filter}`,
     method: "get",
   });
 

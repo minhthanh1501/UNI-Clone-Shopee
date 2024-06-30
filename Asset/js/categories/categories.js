@@ -1,35 +1,91 @@
 import * as apis from "../../../apis";
 import { fetchProducts } from "../products/products";
 
-const checkboxes = document.getElementsByName("filter");
-checkboxes.forEach((item) => {
-  document.getElementById(item.id).addEventListener("click", () => {});
+document.addEventListener("DOMContentLoaded", function () {
+  const urlParams = new URLSearchParams(window.location.search);
+
+  // Lấy giá trị của tham số _filter từ URL và cập nhật trạng thái của các checkbox
+  const filters = urlParams.get("_filter");
+  if (filters !== null) {
+    const filterArray = filters.split(",");
+    filterArray.forEach((filter) => {
+      const checkbox = document.querySelector(
+        `input[name="filter"][value="${filter}"]`
+      );
+      if (checkbox) {
+        checkbox.checked = true;
+      }
+    });
+  }
+
+  const checkboxes = document.querySelectorAll('input[name="filter"]');
+  checkboxes.forEach((checkbox) => {
+    checkbox.addEventListener("click", () => {
+      const url = new URL(window.location);
+      const params = new URLSearchParams(url.search);
+
+      const checkedFilters = Array.from(checkboxes)
+        .filter((cb) => cb.checked)
+        .map((cb) => cb.value);
+
+      if (checkedFilters.length > 0) {
+        params.set("_filter", checkedFilters.join(","));
+      } else {
+        params.delete("_filter");
+      }
+
+      const newUrl = `${url.protocol}//${url.host}${
+        url.pathname
+      }?${params.toString()}`;
+      history.pushState(null, "", newUrl);
+
+      // Gọi hàm xử lý hoặc tải lại dữ liệu nếu cần
+      fetchProducts();
+    });
+  });
 });
 
-document.getElementById("submitPrice").addEventListener("click", () => {
-  const minPrice = document.getElementById("minPrice").value;
-  const maxPrice = document.getElementById("maxPrice").value;
+document.addEventListener("DOMContentLoaded", function () {
+  // Lấy URL hiện tại
+  const urlParams = new URLSearchParams(window.location.search);
 
-  const url = new URL(location);
-  const params = new URLSearchParams(url.search);
+  // Lấy giá trị của tham số _minprice và _maxprice
+  const minPrice = urlParams.get("_minprice");
+  const maxPrice = urlParams.get("_maxprice");
 
-  if (minPrice !== "") {
-    params.set("_minprice", minPrice);
-  } else {
-    params.delete("_minprice");
+  // Kiểm tra nếu các tham số tồn tại và đặt giá trị cho các ô input
+  if (minPrice !== null) {
+    document.getElementById("minPrice").value = minPrice;
+  }
+  if (maxPrice !== null) {
+    document.getElementById("maxPrice").value = maxPrice;
   }
 
-  if (maxPrice !== "") {
-    params.set("_maxprice", maxPrice);
-  } else {
-    params.delete("_maxprice");
-  }
+  document.getElementById("submitPrice").addEventListener("click", () => {
+    const minPrice = document.getElementById("minPrice").value;
+    const maxPrice = document.getElementById("maxPrice").value;
 
-  const NewUrl = `${url.protocol}//${url.host}${
-    url.pathname
-  }?${params.toString()}`;
-  history.pushState(null, "", NewUrl);
-  fetchProducts();
+    const url = new URL(location);
+    const params = new URLSearchParams(url.search);
+
+    if (minPrice !== "") {
+      params.set("_minprice", minPrice);
+    } else {
+      params.delete("_minprice");
+    }
+
+    if (maxPrice !== "") {
+      params.set("_maxprice", maxPrice);
+    } else {
+      params.delete("_maxprice");
+    }
+
+    const newUrl = `${url.protocol}//${url.host}${
+      url.pathname
+    }?${params.toString()}`;
+    history.pushState(null, "", newUrl);
+    fetchProducts();
+  });
 });
 
 const categoriesList = document.getElementById("categoriesList");
@@ -37,6 +93,14 @@ let limitCurrent = 5;
 
 const fetchCategories = async () => {
   try {
+    const urlParams = new URLSearchParams(window.location.search);
+    const category = parseInt(urlParams.get("_category"), 10);
+    let categoryCheck;
+
+    if (category >= 6) {
+      limitCurrent = 15;
+    }
+
     const response = await apis.apiGetCategoriesLimit(limitCurrent);
     // console.log(response);
     showDataCategories(response);
@@ -62,11 +126,17 @@ const showDataCategories = async (response) => {
         </p>`;
 
   categoriesList.innerHTML = html;
+  const url = new URL(location);
+  if (url.searchParams.get("_category")) {
+    console.log(url.searchParams.get("_category"));
+    setActive(`category${url.searchParams.get("_category")}`);
+  }
   attachLoadMoreEvent();
 };
 
 const attachLoadMoreEvent = () => {
   const loadMoreBtn = document.getElementById("loadMoreBtn");
+  console.log(limitCurrent);
   if (limitCurrent <= 12) {
     limitCurrent += 5;
     if (loadMoreBtn) {
