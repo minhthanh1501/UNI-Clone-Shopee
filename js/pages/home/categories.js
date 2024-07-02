@@ -68,6 +68,15 @@ document.addEventListener("DOMContentLoaded", function () {
     const url = new URL(location);
     const params = new URLSearchParams(url.search);
 
+    if (parseInt(minPrice) >= parseInt(maxPrice)) {
+      document.getElementById("messagePrice").textContent =
+        "Giá trị không hợp lệ";
+
+      return;
+    } else {
+      document.getElementById("messagePrice").textContent = "";
+    }
+
     if (minPrice !== "") {
       params.set("_minprice", minPrice);
     } else {
@@ -86,6 +95,13 @@ document.addEventListener("DOMContentLoaded", function () {
     history.pushState(null, "", newUrl);
     fetchProducts();
   });
+});
+
+document.getElementById("delParams").addEventListener("click", () => {
+  const url = new URL(location);
+  const NewUrl = url.origin;
+  history.pushState(null, "", NewUrl);
+  location.reload();
 });
 
 const categoriesList = document.getElementById("categoriesList");
