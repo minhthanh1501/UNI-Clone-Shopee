@@ -1,4 +1,4 @@
-import * as apis from "../../../apis";
+import * as apis from "../../axios";
 
 const productsList = document.getElementById("productsList");
 const paginationProducts = document.getElementById("paginationProducts");

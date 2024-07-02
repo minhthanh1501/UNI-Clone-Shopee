@@ -1,5 +1,5 @@
-import * as apis from "../../../apis";
-import { fetchProducts } from "../products/products";
+import * as apis from "../../axios";
+import { fetchProducts } from "./products";
 
 document.addEventListener("DOMContentLoaded", function () {
   const urlParams = new URLSearchParams(window.location.search);

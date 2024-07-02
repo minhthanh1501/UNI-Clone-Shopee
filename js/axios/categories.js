@@ -1,4 +1,4 @@
-import axios from "../axios";
+import axios from "./axiosCient";
 
 export const apiGetCategoriesLimit = (limit) =>
   axios({
@@ -7,7 +7,7 @@ export const apiGetCategoriesLimit = (limit) =>
   });
 
 export const apiGetCategories = () =>
-  axios({
+  Axios({
     url: `/categories`,
     method: "get",
   });

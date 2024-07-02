@@ -13,8 +13,8 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, "/index.html"), // Tệp đầu vào chính
-        login: resolve(__dirname, "/login/index.html"), // Tệp đầu vào login
-        register: resolve(__dirname, "/register/index.html"),
+        login: resolve(__dirname, "/login.html"), // Tệp đầu vào login
+        register: resolve(__dirname, "/register.html"),
         // register: resolve(__dirname, "register", "index.html"),
       },
     },

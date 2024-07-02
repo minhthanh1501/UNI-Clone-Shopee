@@ -1,0 +1,9 @@
+import "../../../styles/css/index.css";
+import "../../../styles/sass/index.scss";
+import "../../../styles/sass/header.scss";
+import "../../../styles/sass/content.scss";
+import "../../../styles/sass/footer.scss";
+import "@fortawesome/fontawesome-free/css/all.css";
+import "../../../js/pages/home/categories";
+import "../../../js/pages/home/products";
+import "../../../js/pages/home/animations";

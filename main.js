@@ -1,9 +1,0 @@
-import "./Asset/css/index.css";
-import "./Asset/sass/index.scss";
-import "./Asset/sass/header.scss";
-import "./Asset/sass/content.scss";
-import "./Asset/sass/footer.scss";
-import "@fortawesome/fontawesome-free/css/all.css";
-import "./Asset/js/categories/categories";
-import "./Asset/js/products/products";
-import "./Asset/js/animations/animations.js";
