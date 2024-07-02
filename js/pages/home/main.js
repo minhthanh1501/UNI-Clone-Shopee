@@ -7,3 +7,4 @@ import "@fortawesome/fontawesome-free/css/all.css";
 import "../../../js/pages/home/categories";
 import "../../../js/pages/home/products";
 import "../../../js/pages/home/animations";
+import "./handleMain";

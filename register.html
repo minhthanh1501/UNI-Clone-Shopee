@@ -25,7 +25,7 @@
     <!-- content -->
     <div class="content">
         <div class="container">
-            <form class="container__formlogin form-register">
+            <form class="container__formlogin form-register" id="registerForm">
                 <div class="container__formlogin-title spaceXY">
                     <h3>
                         Đăng ký
@@ -35,16 +35,17 @@
 
                 <div class="container__formlogin-field spaceX">
                     <div>
-                        <input type="text" value="0852 097 564" placeholder="Email/Số điện thoại/Tên Đăng nhập">
+                        <input type="text" value="" id="username" placeholder="Email/Số điện thoại/Tên Đăng nhập">
                     </div>
                     <div>
-                        <input type="password" placeholder="Mật khẩu">
+                        <input type="password" id="password" placeholder="Mật khẩu">
                         <i class="fa-regular fa-eye-slash"></i>
                     </div>
                     <div>
-                        <input type="repassword" placeholder="Nhập lại mật khẩu">
+                        <input type="repassword" id="repassword" placeholder="Nhập lại mật khẩu">
                         <i class="fa-regular fa-eye-slash"></i>
                     </div>
+                    <p style="color: red;" id="messageRegister"></p>
                     <button>ĐĂNG KÝ</button>
                 </div>
 
