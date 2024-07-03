@@ -1,9 +1,9 @@
 import axios from "./axiosCient";
 
-export const apiUserRegister = (data) => axios.post("/users", data);
+export const apiCreateUserRegister = (data) => axios.post("/users", data);
 
-export const apiUserLogin = ({ username, password }) =>
-  axios.get("/users", { params: { username, password } });
+export const apiCheckUserLogin = ({ username, phone, password }) =>
+  axios.get("/users", { params: { username, phone, password } });
 
-export const apiCheckUserExist = ({ username }) =>
-  axios.get("/users", { params: { username } });
+export const apiCheckUserExist = ({ username, phone }) =>
+  axios.get("/users", { params: { username, phone } });

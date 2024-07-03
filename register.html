@@ -35,18 +35,22 @@
 
                 <div class="container__formlogin-field spaceX">
                     <div>
-                        <input type="text" value="" id="username" placeholder="Email/Số điện thoại/Tên Đăng nhập">
+                        <input type="text" value="" id="usernameOrPhone"
+                            placeholder="Email/Số điện thoại/Tên Đăng nhập">
                     </div>
+                    <p style="color: red;" id="messageUsernameOrPhone"></p>
                     <div>
                         <input type="password" id="password" placeholder="Mật khẩu">
                         <i class="fa-regular fa-eye-slash"></i>
                     </div>
+                    <p style="color: red;" id="messagePassword"></p>
                     <div>
-                        <input type="repassword" id="repassword" placeholder="Nhập lại mật khẩu">
+                        <input type="password" id="repassword" placeholder="Nhập lại mật khẩu">
                         <i class="fa-regular fa-eye-slash"></i>
                     </div>
-                    <p style="color: red;" id="messageRegister"></p>
+                    <p style="color: red;" id="messageRepassword"></p>
                     <button>ĐĂNG KÝ</button>
+                    <p style="color: red;" id="messageRegister"></p>
                 </div>
 
                 <div class="container__formlogin-line margin-line">

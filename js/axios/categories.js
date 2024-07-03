@@ -7,7 +7,7 @@ export const apiGetCategoriesLimit = (limit) =>
   });
 
 export const apiGetCategories = () =>
-  Axios({
+  axios({
     url: `/categories`,
     method: "get",
   });

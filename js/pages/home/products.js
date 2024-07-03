@@ -3,6 +3,10 @@ import * as apis from "../../axios";
 const productsList = document.getElementById("productsList");
 const paginationProducts = document.getElementById("paginationProducts");
 const popularBtn = document.getElementById("popularBtn");
+const pageCurrent = document.getElementById("pageCurrent");
+const totalPage = document.getElementById("totalPage");
+const prevBtnTop = document.getElementById("prevBtnTop");
+const nextBtnTop = document.getElementById("nextBtnTop");
 
 let currentPage;
 let sort;
@@ -10,6 +14,34 @@ let category;
 let minprice;
 let maxprice;
 let filter;
+
+prevBtnTop.addEventListener("click", () => {
+  let currentUrl = new URL(window.location.href);
+  let params = new URLSearchParams(currentUrl.search);
+  let currentPage = parseInt(params.get("_page")) || 1;
+  let newPage = Math.max(currentPage - 1, 1);
+  params.set("_page", newPage);
+
+  currentUrl.search = params.toString();
+  window.history.pushState({}, "", currentUrl);
+  fetchProducts();
+});
+
+nextBtnTop.addEventListener("click", () => {
+  let currentUrl = new URL(window.location.href);
+  let params = new URLSearchParams(currentUrl.search);
+  let currentPage = parseInt(params.get("_page")) || 1;
+  if (currentPage >= 2) {
+    currentPage = 2;
+  }
+  let newPage = Math.max(currentPage + 1, 1);
+
+  params.set("_page", newPage);
+
+  currentUrl.search = params.toString();
+  window.history.pushState({}, "", currentUrl);
+  fetchProducts();
+});
 
 popularBtn.addEventListener("click", function () {
   const url = new URL(location);
@@ -36,7 +68,7 @@ export const fetchProducts = async () => {
     const url = new URL(location);
     const searchParams = url.searchParams;
 
-    console.log(url);
+    // console.log(url);
 
     searchParams.get("_page") === null
       ? (currentPage = 1)
@@ -72,6 +104,10 @@ export const fetchProducts = async () => {
       filter
     );
     console.log(response);
+    response.next != null
+      ? (pageCurrent.textContent = response.next - 1)
+      : (pageCurrent.textContent = 3);
+    totalPage.textContent = response.pages;
 
     showDataProducts(response);
     ShowPaginationProducts(response);

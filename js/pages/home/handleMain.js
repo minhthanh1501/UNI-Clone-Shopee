@@ -11,12 +11,17 @@ if (localStorage.getItem("token")) {
   registerBtn.classList.add("hidden");
   loginBtn.classList.add("hidden");
   logoutBtn.classList.remove("hidden");
-  userInfo.textContent = localStorage.getItem("token").toString();
+  const userInfoData = localStorage.getItem("userInfo");
+  const userInfoObject = JSON.parse(userInfoData);
+  userInfoObject.username == ""
+    ? (userInfo.textContent = userInfoObject.phone)
+    : (userInfo.textContent = userInfoObject.username);
 }
 
 logoutBtn.addEventListener("click", (e) => {
   e.preventDefault();
   localStorage.removeItem("token");
+  localStorage.removeItem("userInfo");
   clearCookie("refreshToken");
   location.reload();
 });

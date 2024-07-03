@@ -152,7 +152,7 @@ const showDataCategories = async (response) => {
 
 const attachLoadMoreEvent = () => {
   const loadMoreBtn = document.getElementById("loadMoreBtn");
-  console.log(limitCurrent);
+  // console.log(limitCurrent);
   if (limitCurrent <= 12) {
     limitCurrent += 5;
     if (loadMoreBtn) {

@@ -31,20 +31,19 @@
                         Đăng nhập
                     </h3>
                 </div>
-
-
                 <div class="container__formlogin-field spaceX">
                     <div>
-                        <input type="text" name="username" id="username" value=""
+                        <input type="text" name="usernameOrPhone" id="usernameOrPhone" value=""
                             placeholder="Email/Số điện thoại/Tên Đăng nhập">
                     </div>
+                    <p style="color: red;" id="messageUsernameOrPhone"></p>
                     <div>
                         <input type="password" name="password" id="password" placeholder="Mật khẩu">
                         <i class="fa-regular fa-eye-slash"></i>
                     </div>
-
+                    <p style="color: red;" id="messagePassword"></p>
                     <button type="submit">ĐĂNG NHẬP</button>
-
+                    <p style="color: red;" id="messageLogin"></p>
                 </div>
 
                 <div class="container__formlogin-feature">
