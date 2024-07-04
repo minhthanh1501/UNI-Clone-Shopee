@@ -1335,130 +1335,34 @@
   },
   "users": [
     {
-      "id": "1",
-      "username": "minhthanh",
-      "phone": "0905",
-      "password": "12345678"
-    },
-    {
-      "id": "2",
-      "username": "minhthanh2",
-      "phone": "",
-      "password": "12345678"
-    },
-    {
-      "id": "3",
-      "username": "",
-      "phone": "0852097564",
-      "password": "12345678"
-    },
-    {
-      "id": "790e",
-      "username": "",
-      "phone": "mt1234",
-      "password": "mt1234"
-    },
-    {
-      "id": "fefc",
-      "username": "",
-      "phone": "09053",
-      "password": "123"
-    },
-    {
-      "id": "9063",
-      "username": "09053aa",
-      "phone": "",
-      "password": "123"
-    },
-    {
-      "id": "dc60",
-      "username": "",
-      "phone": "09052",
-      "password": "123"
-    },
-    {
-      "id": "5807",
-      "username": "",
-      "phone": "09051",
-      "password": "123"
-    },
-    {
-      "id": "6292",
-      "username": "",
-      "phone": "0900",
-      "password": "123"
-    },
-    {
-      "id": "08da",
-      "username": "mt123333333",
-      "phone": "",
-      "password": "123123123T@"
-    },
-    {
-      "id": "df67",
-      "username": "",
-      "phone": "123333333",
-      "password": "123123123T@"
-    },
-    {
-      "id": "a311",
-      "username": "",
-      "phone": "08520975643",
-      "password": "123123123"
-    },
-    {
-      "id": "06e4",
+      "id": "7f39",
       "username": "minhthanh1501",
       "phone": "",
-      "password": "Minhthanh1501@"
+      "password": "96770de56ef77934487c524255993676e08c18b79fa8b543bdd4d590f1b41feb"
     },
     {
-      "id": "316c",
+      "id": "f085",
       "username": "",
-      "phone": "0852097564333",
-      "password": "Minhthanh1501@"
+      "phone": "0852097564",
+      "password": "96770de56ef77934487c524255993676e08c18b79fa8b543bdd4d590f1b41feb"
     },
     {
-      "id": "79c0",
-      "username": "mt12312312",
+      "id": "62cc",
+      "username": "",
+      "phone": "0852097533",
+      "password": "96770de56ef77934487c524255993676e08c18b79fa8b543bdd4d590f1b41feb"
+    },
+    {
+      "id": "17c2",
+      "username": "baohan070102",
       "phone": "",
-      "password": "11111111T@"
+      "password": "96770de56ef77934487c524255993676e08c18b79fa8b543bdd4d590f1b41feb"
     },
     {
-      "id": "bf33",
-      "username": "",
-      "phone": "08520975641111",
-      "password": "11111111T@"
-    },
-    {
-      "id": "dd86",
-      "username": "",
-      "phone": "0898227098",
-      "password": "12345678T@"
-    },
-    {
-      "id": "4130",
-      "username": "0852097564a",
+      "id": "f837",
+      "username": "bhan070102",
       "phone": "",
-      "password": "11111111T@"
-    },
-    {
-      "id": "636b",
-      "username": "",
-      "phone": "1111111111",
-      "password": "11111111T@"
-    },
-    {
-      "id": "c8ef",
-      "username": "",
-      "phone": "0852097561",
-      "password": "12345678@T"
-    },
-    {
-      "id": "2f41",
-      "username": "",
-      "phone": "0898227097",
-      "password": "12345678T@"
+      "password": "a95e5b8f9eee9ffc62598f2b49dfe1f48a2fde3ffaf6631be4470b7855b7de23"
     }
   ]
 }

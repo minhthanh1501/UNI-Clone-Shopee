@@ -1,7 +1,17 @@
 import { generateAccessToken, generateRefreshToken } from "../../utils/jwt";
 import * as apis from "../../axios";
 import Swal from "sweetalert2";
-import { checkPhoneNumber, setCookie } from "../../utils/helper";
+import {
+  checkPhoneNumber,
+  setCookie,
+  showHideToggle,
+  hashPassword,
+} from "../../utils/helper";
+import {
+  isValidPassword,
+  isValidRePassword,
+  isValidUsernameOrPhone,
+} from "../../utils/validates";
 
 if (localStorage.getItem("token")) {
   window.location.replace(location.origin);
@@ -36,25 +46,26 @@ const checkUserExisted = async (usernameOrPhone) => {
 
 const register = async (usernameOrPhone, password) => {
   let data = {};
+  const hashPass = await hashPassword(password);
   if (checkPhoneNumber(usernameOrPhone)) {
     data = {
       username: "",
       phone: usernameOrPhone,
-      password: password,
+      password: hashPass,
     };
   } else {
     data = {
       username: usernameOrPhone,
       phone: "",
-      password: password,
+      password: hashPass,
     };
   }
 
   try {
     const response = await apis.apiCreateUserRegister(data);
-    console.log(response);
+    const { password, ...userInfoData } = response;
     const accessToken = generateAccessToken(usernameOrPhone);
-    const jsonString = JSON.stringify(response);
+    const jsonString = JSON.stringify(userInfoData);
     const userInfo = jsonString;
     const refreshToken = generateRefreshToken(usernameOrPhone);
 
@@ -79,74 +90,29 @@ document
     );
     const messagePassword = document.getElementById("messagePassword");
     const messageRepassword = document.getElementById("messageRepassword");
-    const messageRegister = document.getElementById("messageRegister");
-
-    // Regular expressions to check for uppercase letters and special characters
-    const uppercaseRegex = /[A-Z]/;
-    const specialCharRegex = /[!@#$%^&*(),.?":{}|<>]/;
 
     // Reset all messages
     messageUsernameOrPhone.textContent = "";
     messagePassword.textContent = "";
     messageRepassword.textContent = "";
-    messageRegister.textContent = "";
 
     let isValid = true;
-    let isPhoneNumber = false;
 
     // Validate usernameOrPhone
-    if (!usernameOrPhone) {
-      messageRegister.textContent = "Vui lòng nhập đủ thông tin!";
-      messageUsernameOrPhone.textContent = "Tên tài khoản tối thiểu 8 ký tự";
-      isValid = false;
-    } else if (usernameOrPhone.length < 8) {
-      // messageUsernameOrPhone.textContent = "Tên tài khoản tối thiểu 8 ký tự";
-      isValid = false;
-    }
-
-    if (checkPhoneNumber(usernameOrPhone)) {
-      isPhoneNumber = true;
-    }
-
-    if (isPhoneNumber) {
-      if (usernameOrPhone.length == 10) {
-        messageUsernameOrPhone.textContent = "";
-        isValid = true;
-      } else {
-        messageUsernameOrPhone.textContent = "Số điện thoại gồm 10 số";
-        isValid = false;
-      }
-    }
+    isValid = isValidUsernameOrPhone({
+      usernameOrPhone,
+      messageUsernameOrPhone,
+    });
 
     // Validate Password
-    if (!password) {
-      messageRegister.textContent = "Vui lòng nhập đủ thông tin!";
-      messagePassword.textContent =
-        " 8 ký tự, 1 ký tự in hoa, 1 ký tự đặc biệt";
-      isValid = false;
-    } else {
-      if (password.length < 8) {
-        messagePassword.textContent = "8 ký tự";
-        messagePassword.textContent += ", 1 ký tự in hoa";
-        messagePassword.textContent += ", 1 ký tự đặc biệt";
-        isValid = false;
-      }
-      if (!uppercaseRegex.test(password) || !specialCharRegex.test(password)) {
-        messagePassword.textContent = "8 ký tự";
-        messagePassword.textContent += ", 1 ký tự in hoa";
-        messagePassword.textContent += ", 1 ký tự đặc biệt";
-        isValid = false;
-      }
-    }
+    isValid = isValidPassword({ messagePassword, password });
 
     // Validate repassword
-    if (!repassword) {
-      messageRegister.textContent = "Vui lòng nhập đủ thông tin!";
-      isValid = false;
-    } else if (password !== repassword) {
-      messageRepassword.textContent = "Xác nhận mật khẩu không khớp!";
-      isValid = false;
-    }
+    isValid = isValidRePassword({
+      messageRepassword,
+      password,
+      rePassword: repassword,
+    });
 
     if (!isValid) {
       return;
@@ -176,3 +142,6 @@ document
       }
     });
   });
+
+showHideToggle("eyePassword", "password");
+showHideToggle("eyeRepassword", "repassword");

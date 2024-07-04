@@ -31,10 +31,8 @@ nextBtnTop.addEventListener("click", () => {
   let currentUrl = new URL(window.location.href);
   let params = new URLSearchParams(currentUrl.search);
   let currentPage = parseInt(params.get("_page")) || 1;
-  if (currentPage >= 2) {
-    currentPage = 2;
-  }
-  let newPage = Math.max(currentPage + 1, 1);
+
+  let newPage = Math.min(currentPage + 1, 3);
 
   params.set("_page", newPage);
 
