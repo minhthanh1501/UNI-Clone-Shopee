@@ -1,4 +1,11 @@
 import * as apis from "../../axios";
+import {
+  DEFALT_MAX_PAGE,
+  DEFALT_MIN_PAGE,
+  DEFAULT_MAX_STAR,
+  DEFAULT_PAGE,
+} from "../../constants";
+import { getQueryParams, setQueryParamsAndPushSate } from "../../utils/helper";
 
 const productsList = document.getElementById("productsList");
 const paginationProducts = document.getElementById("paginationProducts");
@@ -8,100 +15,44 @@ const totalPage = document.getElementById("totalPage");
 const prevBtnTop = document.getElementById("prevBtnTop");
 const nextBtnTop = document.getElementById("nextBtnTop");
 
-let currentPage;
-let sort;
-let category;
-let minprice;
-let maxprice;
-let filter;
+window.addEventListener("popstate", () => {
+  fetchProducts();
+});
 
 prevBtnTop.addEventListener("click", () => {
-  let currentUrl = new URL(window.location.href);
-  let params = new URLSearchParams(currentUrl.search);
-  let currentPage = parseInt(params.get("_page")) || 1;
-  let newPage = Math.max(currentPage - 1, 1);
-  params.set("_page", newPage);
-
-  currentUrl.search = params.toString();
-  window.history.pushState({}, "", currentUrl);
+  const { currentPage } = getQueryParams();
+  let newPage = Math.max(currentPage - 1, DEFALT_MIN_PAGE);
+  setQueryParamsAndPushSate({ _page: newPage });
   fetchProducts();
 });
 
 nextBtnTop.addEventListener("click", () => {
-  let currentUrl = new URL(window.location.href);
-  let params = new URLSearchParams(currentUrl.search);
-  let currentPage = parseInt(params.get("_page")) || 1;
-
-  let newPage = Math.min(currentPage + 1, 3);
-
-  params.set("_page", newPage);
-
-  currentUrl.search = params.toString();
-  window.history.pushState({}, "", currentUrl);
+  const { currentPage } = getQueryParams();
+  let newPage = Math.min(currentPage + 1, DEFALT_MAX_PAGE);
+  setQueryParamsAndPushSate({ _page: newPage });
   fetchProducts();
 });
 
 popularBtn.addEventListener("click", function () {
-  const url = new URL(location);
-  let origin = url.origin;
-  let pathname = url.pathname;
-  let searchParams = url.searchParams;
-  if (searchParams.get("_page") === null) {
-    searchParams.set("_page", 1);
-  }
-
-  url.searchParams.set("_sort", "rating");
-  console.log(url);
-  sort = url.searchParams.get("_sort");
-  const newUrl = origin + pathname + `?` + searchParams;
-  // newUrl.replace("/?", "?");
-  console.log(newUrl);
-  history.pushState(null, "", newUrl);
-
+  setQueryParamsAndPushSate({ _sort: "rating" });
   fetchProducts();
 });
 
 export const fetchProducts = async () => {
   try {
-    const url = new URL(location);
-    const searchParams = url.searchParams;
+    const { currentPage, category, filter, maxprice, minprice, perPage, sort } =
+      getQueryParams();
 
-    // console.log(url);
+    const response = await apis.apiGetProductsFilter({
+      _page: currentPage,
+      _per_page: perPage,
+      _sort: sort,
+      _category: category,
+      _minprice: minprice,
+      _maxprice: maxprice,
+      _filter: filter,
+    });
 
-    searchParams.get("_page") === null
-      ? (currentPage = 1)
-      : (currentPage = searchParams.get("_page"));
-
-    searchParams.get("_sort") === null
-      ? (sort = "price")
-      : (sort = searchParams.get("_sort"));
-
-    searchParams.get("_category") === null
-      ? (category = 1)
-      : (category = searchParams.get("_category"));
-
-    searchParams.get("_minprice") === null
-      ? (minprice = 0)
-      : (minprice = searchParams.get("_minprice"));
-
-    searchParams.get("_maxprice") === null
-      ? (maxprice = 100000)
-      : (maxprice = searchParams.get("_maxprice"));
-
-    searchParams.get("_filter") === null
-      ? (filter = "")
-      : (filter = searchParams.get("_filter"));
-
-    const response = await apis.apiGetProductsFilter(
-      currentPage,
-      20,
-      sort,
-      category,
-      minprice,
-      maxprice,
-      filter
-    );
-    console.log(response);
     response.next != null
       ? (pageCurrent.textContent = response.next - 1)
       : (pageCurrent.textContent = 3);
@@ -131,7 +82,7 @@ const showDataProducts = (response) => {
       });
 
       let starsHtml = "";
-      for (let i = 1; i < 5; i++) {
+      for (let i = 1; i < DEFAULT_MAX_STAR; i++) {
         if (i <= product.rating) {
           starsHtml += '<i class="fa-solid fa-star text-yellow-400"></i>';
         } else {
@@ -191,9 +142,7 @@ const showDataProducts = (response) => {
 const ShowPaginationProducts = (response) => {
   let paginationHtml = "";
 
-  paginationHtml += `<button  class="flex justify-between items-center px-3 rounded-sm  cursor-pointer hover:opacity-50" id="prevBtn" ${
-    parseInt(currentPage) === 1 ? "disabled" : ""
-  }><i
+  paginationHtml += `<button  class="flex justify-between items-center px-3 rounded-sm  cursor-pointer hover:opacity-50" id="prevBtn"><i
                 class="fa-solid fa-angle-left text-gray-400 text-[17px]"></i></button>`;
 
   for (let index = 1; index <= response.pages; index++) {
@@ -202,9 +151,7 @@ const ShowPaginationProducts = (response) => {
     `;
   }
 
-  paginationHtml += `<button class="flex justify-between items-center px-3 rounded-sm  cursor-pointer hover:opacity-50" id="nextBtn" ${
-    parseInt(currentPage) === 3 ? "disabled" : ""
-  }><i
+  paginationHtml += `<button class="flex justify-between items-center px-3 rounded-sm  cursor-pointer hover:opacity-50" id="nextBtn"><i
                 class="fa-solid fa-angle-right text-gray-400 text-[17px]"></i></button>`;
 
   paginationProducts.innerHTML = paginationHtml;
@@ -223,66 +170,24 @@ const attachLoadMoreEventProducts = () => {
   const nextBtn = document.getElementById("nextBtn");
 
   prevBtn.addEventListener("click", () => {
-    const url = new URL(location);
-    let newPage = parseInt(url.searchParams.get("_page")) - 1;
-    console.log(newPage);
-    url.searchParams.set("_page", newPage);
-    history.pushState(null, "", url);
+    const { currentPage } = getQueryParams();
+    let newPage = Math.max(currentPage - 1, DEFALT_MIN_PAGE);
+    setQueryParamsAndPushSate({ _page: newPage });
     fetchProducts();
   });
 
   nextBtn.addEventListener("click", () => {
-    const url = new URL(location);
-    let newPage = parseInt(url.searchParams.get("_page")) + 1;
-    console.log(newPage);
-    url.searchParams.set("_page", newPage);
-    history.pushState(null, "", url);
+    const { currentPage } = getQueryParams();
+    let newPage = Math.min(currentPage + 1, DEFALT_MAX_PAGE);
+    setQueryParamsAndPushSate({ _page: newPage });
     fetchProducts();
-    // console.log(parseInt(url.searchParams.get("_page")) === 3);
   });
 
   const items = document.querySelectorAll('[id^="item"]');
+
   items.forEach((item) => {
     document.getElementById(item.id).addEventListener("click", function () {
-      // Thay đổi URL mà không tải lại trang
-      let newUrl;
-      let params;
-      const url = new URL(location);
-      if (url.searchParams.get("_sort") === null) {
-        newUrl =
-          url.protocol +
-          "//" +
-          url.host +
-          url.pathname +
-          `?_page=${item.value}` +
-          `&_sort=price`;
-      } else {
-        if (url.searchParams.get("_category") != null) {
-          params = `&_category=${category}`;
-        } else {
-          params = "";
-        }
-        if (url.searchParams.get("_minprice") != null) {
-          params = `$_minprice=${url.searchParams.get("_minprice")}`;
-          console.log("mp1");
-        }
-        if (url.searchParams.get("_maxprice") != null) {
-          params = `$_maxprice=${url.searchParams.get("_maxprice")}`;
-          console.log("mp2");
-        }
-        sort = url.searchParams.get("_sort");
-        newUrl =
-          url.protocol +
-          "//" +
-          url.host +
-          url.pathname +
-          `?_page=${item.value}` +
-          `&_sort=${sort}` +
-          params;
-      }
-      console.log("New URL:", newUrl);
-      history.pushState({ page: 1 }, "Page 1", newUrl);
-
+      setQueryParamsAndPushSate({ _page: item.value });
       fetchProducts().then(() => {
         setActive(item.id);
       });

@@ -9,7 +9,7 @@ import {
 } from "../../utils/helper";
 import { isValidPassword, isValidUsernameOrPhone } from "../../utils/validates";
 
-const Login = async (usernameOrPhone, password) => {
+const login = async (usernameOrPhone, password) => {
   let data = {};
   if (checkPhoneNumber(usernameOrPhone)) {
     data = {
@@ -65,7 +65,7 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
   const hashPass = await hashPassword(password);
   // console.log(hashPass);
   // If all validations pass, proceed with login
-  Login(usernameOrPhone, password).then((result) => {
+  login(usernameOrPhone, password).then((result) => {
     if (result) {
       if (
         (usernameOrPhone == result[0].phone ||

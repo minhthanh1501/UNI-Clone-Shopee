@@ -1,3 +1,10 @@
+import {
+  DEFAULT_MAX_PRICE,
+  DEFAULT_MIN_PRICE,
+  DEFAULT_PAGE,
+  DEFAULT_PER_PAGE,
+} from "../constants";
+
 export function checkPhoneNumber(input) {
   const phoneNumberRegex = /^\d+$/;
   return phoneNumberRegex.test(input);
@@ -44,3 +51,57 @@ export async function hashPassword(passwordInput) {
     .join("");
   return hashHex;
 }
+
+export const getQueryParams = () => {
+  const url = new URL(location);
+  const searchParams = url.searchParams;
+
+  const currentPage = searchParams.get("_page");
+
+  const perPage = searchParams.get("_per_page");
+
+  const sort = searchParams.get("_sort");
+
+  const category = searchParams.get("_category");
+
+  const minprice = searchParams.get("_minprice");
+
+  const maxprice = searchParams.get("_maxprice");
+
+  const filter = searchParams.get("_filter");
+
+  return {
+    currentPage: parseInt(currentPage) || DEFAULT_PAGE,
+    perPage: parseInt(perPage) || DEFAULT_PER_PAGE,
+    sort,
+    category,
+    minprice,
+    maxprice,
+    filter,
+  };
+};
+
+// {
+//   "_page": 22342342,
+//   "_per_page": 1231231231
+// }
+
+export const setQueryParamsAndPushSate = (Obj) => {
+  const keyArr = Object.keys(Obj); // ["_page", "_per_page"]
+
+  let url = new URL(location);
+  let params = new URLSearchParams(url.search);
+
+  keyArr.forEach((key) => {
+    params.set(key, Obj[key]);
+  });
+
+  url.search = params.toString();
+  window.history.pushState(null, "", url);
+};
+
+// setQueryParamsAndPushSate({
+//   _page: 1,
+//   _per_page: 20,
+//   _sort: "price",
+// });

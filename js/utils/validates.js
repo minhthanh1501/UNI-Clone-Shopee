@@ -62,70 +62,93 @@ export const isValidPassword = ({ password, messagePassword }) => {
   return isValid;
 };
 
+export const isUsernameShouldBePhoneNumber = ({ usernameOrPhone }) => {
+  if (!usernameOrPhone || !(typeof usernameOrPhone === "string")) return false;
+
+  if (usernameOrPhone.length !== 10) return false;
+
+  if (usernameOrPhone.indexOf(0) !== "0") return false;
+
+  if (isNaN(Number(usernameOrPhone))) return false;
+
+  return true;
+};
+
 export const isValidUsernameOrPhone = ({
   usernameOrPhone,
   messageUsernameOrPhone,
 }) => {
-  let isValid = true;
-
   if (!usernameOrPhone) {
     messageUsernameOrPhone.textContent =
       "Vui lòng nhập tên đăng nhập hoặc số điện thoại";
-    isValid = false;
-  } else if (usernameOrPhone.length < 8) {
+    return false;
+  }
+
+  const isPhoneNumber = isUsernameShouldBePhoneNumber({ usernameOrPhone });
+
+  if (isPhoneNumber) {
+    phoneNumberRegex.test(usernameOrPhone) &&
+      (messageUsernameOrPhone.innerHTML =
+        "Số điện thoại không hợp lệ<br> (vd: 84386648412 / 0985391168)");
+    return false;
+  }
+
+  if (usernameOrPhone.length < 8) {
     messageUsernameOrPhone.innerHTML =
       "Tên tài khoản tối thiểu 8 ký tự gồm số và chữ cái<br>(vd: minhthanh_1501 / minhthanh1501)";
-    isValid = false;
-  } else if (
+    return false;
+  }
+
+  if (
     usernameOrPhone.length >= 8 &&
     usernameOrPhone.length !== 10 &&
     !usernameRegex.test(usernameOrPhone)
   ) {
     messageUsernameOrPhone.innerHTML =
       "Tên tài khoản phải gồm số và chữ cái<br>(vd: minhthanh_1501 / minhthanh1501)";
-    isValid = false;
-  } else if (
-    usernameOrPhone.length == 10 &&
-    Number(usernameOrPhone) &&
-    phoneNumberRegex.test(usernameOrPhone)
-  ) {
-    isValid = true;
-  } else if (
-    usernameOrPhone.length == 10 &&
-    Number(usernameOrPhone) &&
-    !phoneNumberRegex.test(usernameOrPhone)
-  ) {
-    messageUsernameOrPhone.innerHTML =
-      "Số điện thoại không hợp lệ<br> (vd: 84386648412 / 0985391168)";
-    isValid = false;
+    return false;
   }
 
-  return isValid;
+  return true;
 };
 
-export const isUsernameShouldBePhoneNumber = ({
-  usernameOrPhone,
-  messageUsernameOrPhone,
-}) => {
-  //string, number, {}, []
-  if (!usernameOrPhone || !(typeof usernameOrPhone === "string")) return false;
+// export const isValidUsernameOrPhone = ({
+//   usernameOrPhone,
+//   messageUsernameOrPhone,
+// }) => {
+//   let isValid = true;
 
-  let isValid = true;
+//   if (!usernameOrPhone) {
+//     messageUsernameOrPhone.textContent =
+//       "Vui lòng nhập tên đăng nhập hoặc số điện thoại";
+//     isValid = false;
+//   } else if (usernameOrPhone.length < 8) {
+//     messageUsernameOrPhone.innerHTML =
+//       "Tên tài khoản tối thiểu 8 ký tự gồm số và chữ cái<br>(vd: minhthanh_1501 / minhthanh1501)";
+//     isValid = false;
+//   } else if (
+//     usernameOrPhone.length >= 8 &&
+//     usernameOrPhone.length !== 10 &&
+//     !usernameRegex.test(usernameOrPhone)
+//   ) {
+//     messageUsernameOrPhone.innerHTML =
+//       "Tên tài khoản phải gồm số và chữ cái<br>(vd: minhthanh_1501 / minhthanh1501)";
+//     isValid = false;
+//   } else if (
+//     usernameOrPhone.length == 10 &&
+//     Number(usernameOrPhone) &&
+//     phoneNumberRegex.test(usernameOrPhone)
+//   ) {
+//     isValid = true;
+//   } else if (
+//     usernameOrPhone.length == 10 &&
+//     Number(usernameOrPhone) &&
+//     !phoneNumberRegex.test(usernameOrPhone)
+//   ) {
+//     messageUsernameOrPhone.innerHTML =
+//       "Số điện thoại không hợp lệ<br> (vd: 84386648412 / 0985391168)";
+//     isValid = false;
+//   }
 
-  if (usernameOrPhone.length !== 10) {
-    isValid = false;
-    messageUsernameOrPhone.textContent = "Số điện thoại phải có 10 ký tự";
-  }
-
-  if (usernameOrPhone.indexOf(0) !== "0") {
-    isValid = false;
-    messageUsernameOrPhone.textContent = "Số điện thoại không hợp lệ";
-  }
-
-  if (isNaN(Number(usernameOrPhone))) {
-    isValid = false;
-    messageUsernameOrPhone.textContent = "Số điện thoại không hợp lệ";
-  }
-
-  return isValid;
-};
+//   return isValid;
+// };
