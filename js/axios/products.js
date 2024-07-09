@@ -15,6 +15,12 @@ import axios from "./axiosCient";
 //     method: "get",
 //   });
 
+// export const apiGetProducts = () =>
+//   axios({
+//     url: `/products`,
+//     method: "get",
+//   });
+
 export const apiGetProductsFilter = ({
   _page,
   _per_page,
@@ -36,8 +42,4 @@ export const apiGetProductsFilter = ({
     },
   });
 
-export const apiGetProducts = () =>
-  axios({
-    url: `/products`,
-    method: "get",
-  });
+export const apiGetProducts = () => axios.get("/products");

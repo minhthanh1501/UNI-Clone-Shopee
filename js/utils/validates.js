@@ -10,20 +10,18 @@ export const isValidRePassword = ({
   rePassword,
   messageRepassword,
 }) => {
-  let isValid = true;
-
   if (!rePassword) {
     messageRepassword.textContent = "Vui lòng xác nhận lại mật khẩu";
-    isValid = false;
+    return false;
   } else {
     if (password !== rePassword) {
       messageRepassword.textContent = "Xác nhận mật khẩu không khớp!";
-      isValid = false;
+      return false;
     }
     if (rePassword.length < 8) {
       messageRepassword.innerHTML =
         "Mật khẩu phải có 8 ký tự gồm 1 ký tự in hoa, 1 ký tự đặc biệt<br>(vd: Shopee123@)";
-      isValid = false;
+      return false;
     }
     if (
       !uppercaseRegex.test(rePassword) ||
@@ -31,35 +29,33 @@ export const isValidRePassword = ({
     ) {
       messageRepassword.innerHTML =
         "Mật khẩu phải có 8 ký tự gồm 1 ký tự in hoa, 1 ký tự đặc biệt<br>(vd: Shopee123@)";
-      isValid = false;
+      return false;
     }
   }
 
-  return isValid;
+  return true;
 };
 
 export const isValidPassword = ({ password, messagePassword }) => {
-  let isValid = true;
-
   if (!password) {
     messagePassword.textContent = "Vui lòng nhập mật khẩu";
-    isValid = false;
+    return false;
   } else {
     if (password.length < 8) {
       messagePassword.innerHTML =
         "Mật khẩu phải có 8 ký tự gồm 1 ký tự in hoa, 1 ký tự đặc biệt<br>(vd: Shopee123@)";
-      isValid = false;
-      isValid = false;
+
+      return false;
     }
     if (!uppercaseRegex.test(password) || !specialCharRegex.test(password)) {
       messagePassword.innerHTML =
         "Mật khẩu phải có 8 ký tự gồm 1 ký tự in hoa, 1 ký tự đặc biệt<br>(vd: Shopee123@)";
-      isValid = false;
-      isValid = false;
+
+      return false;
     }
   }
 
-  return isValid;
+  return true;
 };
 
 export const isUsernameShouldBePhoneNumber = ({ usernameOrPhone }) => {

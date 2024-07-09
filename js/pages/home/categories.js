@@ -50,20 +50,18 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
+  let minPrice = document.getElementById("minPrice").value;
+  let maxPrice = document.getElementById("maxPrice").value;
   const { minprice, maxprice } = getQueryParams();
 
-  // Kiểm tra nếu các tham số tồn tại và đặt giá trị cho các ô input
   if (minprice !== null) {
-    document.getElementById("minPrice").value = minprice;
+    minPrice = minprice;
   }
   if (maxprice !== null) {
-    document.getElementById("maxPrice").value = maxprice;
+    maxPrice = maxprice;
   }
 
   document.getElementById("submitPrice").addEventListener("click", () => {
-    let minPrice = document.getElementById("minPrice").value;
-    let maxPrice = document.getElementById("maxPrice").value;
-
     const url = new URL(location);
     const params = new URLSearchParams(url.search);
     if (minPrice === "" && maxPrice === "") {
@@ -73,24 +71,18 @@ document.addEventListener("DOMContentLoaded", function () {
     if (parseInt(minPrice) >= parseInt(maxPrice)) {
       document.getElementById("messagePrice").textContent =
         "Giá trị không hợp lệ";
-
       return;
     } else {
       document.getElementById("messagePrice").textContent = "";
     }
 
-    // setQueryParamsAndPushSate({ _minprice: minPrice, _maxprice: maxPrice });
-    if (minPrice !== "") {
-      params.set("_minprice", minPrice);
-    } else {
-      params.delete("_minprice");
-    }
+    minPrice !== ""
+      ? params.set("_minprice", minPrice)
+      : params.delete("_minprice");
 
-    if (maxPrice !== "") {
-      params.set("_maxprice", maxPrice);
-    } else {
-      params.delete("_maxprice");
-    }
+    maxPrice !== ""
+      ? params.set("_maxprice", maxPrice)
+      : params.delete("_maxprice");
 
     const newUrl = `${url.protocol}//${url.host}${
       url.pathname
